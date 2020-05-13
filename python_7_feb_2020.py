@@ -1,7 +1,7 @@
 
 import sys
 import math
-from PyQt5.QtGui import QPolygon, QPolygonF, QColor, QPen, QFont,QPainter, QFontMetrics, QConicalGradient,QPixmap
+from PyQt5.QtGui import QPolygon,QPalette, QPolygonF, QColor, QPen, QFont,QPainter, QFontMetrics, QConicalGradient,QPixmap
 # QtGui -> QPolygon, QPolygonF, QColor, QPen, QFont, QPainter, QFontMetrics, QConicalGradient
 
 from PyQt5.QtCore import Qt ,QTime, QTimer, QPoint, QPointF, QRect, QSize,QObject, pyqtSignal,QRectF,QPropertyAnimation,  pyqtProperty
@@ -34,6 +34,7 @@ class Switch(QAbstractButton):
         self._offset = self._base_offset
 
         palette = self.palette()
+        palette.setColor(QPalette.Link, QColor(0,156,65))
         if self._thumb_radius > self._track_radius:
             self._track_color = {
                 True: palette.highlight(),
@@ -59,10 +60,11 @@ class Switch(QAbstractButton):
             }
             self._track_color = {
                 True: palette.highlight(),
-                False: palette.dark(),
+                #False: palette.setColor(self.backgroundRole(), Qt.white)
+                False: palette.link().color(),
             }
             self._text_color = {
-                True: palette.highlight().color(),
+                True: palette.mid().color(),
                 False: palette.dark().color(),
             }
             if(self.text=='Time'):

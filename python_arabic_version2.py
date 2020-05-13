@@ -10001,8 +10001,6 @@ class subwindow(QMdiSubWindow):
         self.gauge=AnalogGaugeWidget(self)
         self.gauge.setGeometry(30,250,320, 340)
         self.gauge.setStyleSheet("background-color:#f7f7ff;")
-        self.label=QLabel("C",self)
-        self.label.setGeometry(30,250,320,340)
         #self.Form = QWidget()
         #self.ui = Ui_Form()
         #self.ui.setupUi(self.Form)
