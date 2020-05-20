@@ -19,7 +19,7 @@ from datetime import datetime
 from PyQt5.QtGui import QPixmap,QPainter,QFont,QCursor,QMovie,QTextCursor,QColor,QPen
 from PyQt5.QtCore import QThread, pyqtSignal,QTimer,QTime,Qt,QRect
 from PyQt5.QtWidgets import (QPlainTextEdit,QHeaderView,QScroller,QAbstractItemView,QComboBox,QGraphicsDropShadowEffect,QWidget,QMainWindow,QFrame,
-  QApplication, QDialog,QProgressBar, QPushButton,QMdiSubWindow,QTreeWidget,QLabel,QLineEdit,QTreeWidgetItem,QMdiArea,QGraphicsView)
+  QApplication, QDialog,QProgressBar, QPushButton,QMdiSubWindow,QTreeWidget,QLabel,QLineEdit,QTreeWidgetItem,QMdiArea,QGraphicsView,QTextEdit)
 #import math
 from pyqtgraph import PlotWidget, plot
 import pyqtgraph as pg
@@ -537,12 +537,12 @@ class External2(QThread):
 class External1(QThread):
         countChanged = pyqtSignal(str)
         def run(self):
-            if(starttestdata.hours!='infinity' or starttestdata.minutes !='infinity'):
+            if(starttestdata.hours!=str("infinity") or starttestdata.minutes !=str("infinity")):
                 hours=int(starttestdata.hours)
                 minutes=int(starttestdata.minutes)
                 try:  
 
-                                if (hours==0 and minutes!='Infinity'):
+                                if (hours==0 and minutes!=str("infinity")):
                                         for m in range(minutes):
                                                 for z in range(61):
 
@@ -561,7 +561,7 @@ class External1(QThread):
 
                                             
 
-                                elif hours!='Infinity' and minutes!='Infinity':
+                                elif hours!=str("infinity") and minutes!=str("infinity"):
                                     #gfg1=1
 
                                             
@@ -634,8 +634,8 @@ class External1(QThread):
                                             self.countChanged.emit('stop')
 
                                 
-                                elif(hours=='Infinity' and minutes=='Infinity'):
-                                    print('Infinity')
+                                elif(hours==str("infinity") and minutes==str("infinity")):
+                                    print(str("infinity"))
 
 
                 except:
@@ -665,16 +665,16 @@ class exportallresults(QMdiSubWindow):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.label = QLabel('Export/Print Results',self)
-        self.label.setFont(QFont('Arial', 21))
+        self.label = QLabel('Exporter tous les résultats',self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(410,120,300,50)
+        self.label.setGeometry(370,125,370,50)
 
 
-        self.etd = QPushButton('Export All Tabular Data', self)
-        self.etd.setGeometry(120,270,300,80)
+        self.etd = QPushButton(str("exporter toutes les données tabulaires"), self)
+        self.etd.setGeometry(120,330,350,80)
         self.etd.setFont(QFont('Arial', 21))
         self.etd.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -686,8 +686,8 @@ class exportallresults(QMdiSubWindow):
         self.etd.clicked.connect(self.save1)
 
 
-        self.eag = QPushButton('Export All Graphs', self)
-        self.eag.setGeometry(120,420,300,80)
+        self.eag = QPushButton(str("exporter tous les graphes"), self)
+        self.eag.setGeometry(120,470,350,80)
         self.eag.setFont(QFont('Arial', 21))
         self.eag.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -699,8 +699,8 @@ class exportallresults(QMdiSubWindow):
         self.eag.clicked.connect(self.save1)
 
 
-        self.etp = QPushButton('Export All Test Performed', self)
-        self.etp.setGeometry(120,570,300,80)
+        self.etp = QPushButton(str("exporter tous les tests effectués"), self)
+        self.etp.setGeometry(120,620,350,80)
         self.etp.setFont(QFont('Arial', 21))
         self.etp.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -712,8 +712,8 @@ class exportallresults(QMdiSubWindow):
         self.etp.clicked.connect(self.save1)
 
 
-        self.save = QPushButton('Print All Tabular Data', self)
-        self.save.setGeometry(540,270,300,80)
+        self.save = QPushButton(str("Imprimer toutes les données tabulaires"), self)
+        self.save.setGeometry(540,320,350,80)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -724,8 +724,8 @@ class exportallresults(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
         
-        self.save = QPushButton('Print All Graphs', self)
-        self.save.setGeometry(540,420,300,80)
+        self.save = QPushButton(str("Imprimer tous les graphes"), self)
+        self.save.setGeometry(540,470,350,80)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -736,8 +736,8 @@ class exportallresults(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
 
-        self.save = QPushButton('Print All Test Performed', self)
-        self.save.setGeometry(540,570,300,80)
+        self.save = QPushButton(str("Imprimer tous les tests effectués"), self)
+        self.save.setGeometry(540,620,350,80)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -747,16 +747,11 @@ class exportallresults(QMdiSubWindow):
 "padding: 4px; color: black")
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(700,170,200,60)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -817,7 +812,10 @@ class point3calibration(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet('background-color:white;')
+        #self.setStyleSheet('background-color:white;')
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
         self.label = QLabel('3 Point Calibration',self)
         self.label.setFont(QFont('Arial', 21))
         self.label.setStyleSheet('background-color:white; color: black')
@@ -904,16 +902,11 @@ class point3calibration(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
         
-
-        self.back = QPushButton('Back', self)
+        back="\u2190      \u0631\u062c\u0648\u0639        "
+        self.back = QPushButton(back, self)
         self.back.setGeometry(395,605,300,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
 
@@ -976,7 +969,9 @@ class point2calibration(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet('background-color:white;')
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
         self.label = QLabel('2 Point Calibration',self)
         self.label.setFont(QFont('Arial', 21))
         self.label.setStyleSheet('background-color:white; color: black')
@@ -1035,16 +1030,11 @@ class point2calibration(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
         
-
-        self.back = QPushButton('Back', self)
+        back="\u2190      \u0631\u062c\u0648\u0639        "
+        self.back = QPushButton(back, self)
         self.back.setGeometry(395,505,300,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
 
@@ -1104,7 +1094,9 @@ class point1calibration(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet('background-color:white;')
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
         self.label = QLabel('1 Point Calibration',self)
         self.label.setFont(QFont('Arial', 21))
         self.label.setStyleSheet('background-color:white; color: black')
@@ -1145,16 +1137,11 @@ class point1calibration(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.sc.clicked.connect(self.save1)
         
-
-        self.back = QPushButton('Back', self)
+        back="\u2190      \u0631\u062c\u0648\u0639        "
+        self.back = QPushButton(back, self)
         self.back.setGeometry(395,405,300,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
 
@@ -1234,30 +1221,30 @@ class masterpasswordscreen(QMdiSubWindow):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.label = QLabel('Master Password',self)
+        self.label = QLabel(str("mot de passe principal"),self)
         self.label.setFont(QFont('Arial', 21))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(410,120,300,50)    
+        self.label.setGeometry(400,125,370,50)    
 
-        self.nsp = QLabel('New Service Password',self)
-        self.nsp.setFont(QFont('Arial', 18))
+        self.nsp = QLabel(str("saisir un nouveau mot de passe de service"),self)
+        self.nsp.setFont(QFont('Arial', 15))
         self.nsp.setStyleSheet('background-color:white; color: black')
-        self.nsp.setGeometry(90,220,270,50)
+        self.nsp.setGeometry(50,320,390,50)
 
 
-        self.cp = QLabel('Confirm Password',self)
-        self.cp.setFont(QFont('Arial', 18))
+        self.cp = QLabel(str("confirmez le mot de passe"),self)
+        self.cp.setFont(QFont('Arial', 15))
         self.cp.setStyleSheet('background-color:white; color: black')
-        self.cp.setGeometry(90,340,270,50)
+        self.cp.setGeometry(50,440,390,50)
 
 
         self.e_nsp = extQLineEdit1(self)
         self.e_nsp .setFont(QFont('Arial', 18))
-        self.e_nsp .setGeometry(390,220,500,53)
+        self.e_nsp .setGeometry(450,320,450,53)
         self.e_nsp .setStyleSheet('background-color:white; color: black')
-        self.e_nsp .setPlaceholderText('Enter New Service Password')
+        self.e_nsp .setPlaceholderText(str("saisir un nouveau mot de passe de service"))
         self.e_nsp.setReadOnly(True)
         self.e_nsp.setEchoMode(QLineEdit.Password)
         self.e_nsp.setText(masterpassword_screen.newservicepassword)
@@ -1265,17 +1252,17 @@ class masterpasswordscreen(QMdiSubWindow):
 
         self.e_cp = extQLineEdit1(self)
         self.e_cp.setFont(QFont('Arial', 18))
-        self.e_cp.setGeometry(390,340,500,53)
+        self.e_cp.setGeometry(450,440,450,53)
         self.e_cp.setStyleSheet('background-color:white; color: black')
-        self.e_cp.setPlaceholderText('Enter Confirm Password')
+        self.e_cp.setPlaceholderText(str("confirmez le mot de passe"))
         self.e_cp.setReadOnly(True)
         self.e_cp.setEchoMode(QLineEdit.Password)
         self.e_cp.setText(masterpassword_screen.confirmservicepassword)
         self.e_cp.speak.connect(partial(self.call_b,data='confirmservicepassword'))
 
 
-        self.save = QPushButton('Save', self)
-        self.save.setGeometry(450,435,300,70)
+        self.save = QPushButton(str("sauvegarder"), self)
+        self.save.setGeometry(70,202,241,61)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -1286,16 +1273,11 @@ class masterpasswordscreen(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
         
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(450,535,300,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -1306,12 +1288,12 @@ class masterpasswordscreen(QMdiSubWindow):
 
         if(len(self.e_nsp.text())==0 or len(self.e_cp.text())==0 ):
 
-            self.popup1=popup1(name='              Please Enter All Values',name2='Close')
+            self.popup1=popup1(name='Veuillez saisir toutes les valeurs',name2='Close')
             self.popup1.show()
 
         elif(self.e_nsp.text()!=self.e_cp.text()):
 
-            self.popup1=popup1(name="      New password does not matched\n      confirmed password!",name2='Close')
+            self.popup1=popup1(name="Le nouveau mot de passe ne correspond pas  mot de passe confirmé!",name2='Close')
             self.popup1.show()
 
 
@@ -1323,7 +1305,7 @@ class masterpasswordscreen(QMdiSubWindow):
             conn.commit()
             c.close()               
             conn.close()
-            self.popup1=popup2(name="              Password has been updated!",name2='Close')
+            self.popup1=popup2(name="Le mot de passe a été mis à jour!",name2='Close')
             self.popup1.show()
             self.close()
             #self.destroy()
@@ -1412,35 +1394,35 @@ class servicepasswordscreen(QMdiSubWindow):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.label = QLabel('New Service Password',self)
+        self.label = QLabel(str("entrez le mot de passe "),self)
         self.label.setFont(QFont('Arial', 21))
         self.label.setStyleSheet('background-color:white; color: black')
         self.label.setGeometry(410,120,300,50)
 
-        self.lcp = QLabel('Enter Current Password',self)
-        self.lcp.setFont(QFont('Arial', 18))
+        self.lcp = QLabel(str("entrez le nouveau mot de passe"),self)
+        self.lcp.setFont(QFont('Arial', 16))
         self.lcp.setStyleSheet('background-color:white; color: black')
-        self.lcp.setGeometry(90,220,270,50)
+        self.lcp.setGeometry(60,320,300,50)
 
 
-        self.lnp = QLabel('Enter New Password',self)
-        self.lnp.setFont(QFont('Arial', 18))
+        self.lnp = QLabel(str("entrez le nouveau mot de passe"),self)
+        self.lnp.setFont(QFont('Arial', 16))
         self.lnp.setStyleSheet('background-color:white; color: black')
-        self.lnp.setGeometry(90,340,270,50)
+        self.lnp.setGeometry(60,440,300,50)
 
 
-        self.lcnp = QLabel('Confirm new Password',self)
-        self.lcnp.setFont(QFont('Arial', 18))
+        self.lcnp = QLabel(str("confirmer le nouveau mot de"),self)
+        self.lcnp.setFont(QFont('Arial', 16))
         self.lcnp.setStyleSheet('background-color:white; color: black')
-        self.lcnp.setGeometry(90,460,270,50)
+        self.lcnp.setGeometry(60,560,300,50)
 
         self.e_cp = extQLineEdit1(self)
         self.e_cp .setFont(QFont('Arial', 18))
-        self.e_cp .setGeometry(390,220,500,53)
+        self.e_cp .setGeometry(390,320,500,53)
         self.e_cp .setStyleSheet('background-color:white; color: black')
-        self.e_cp .setPlaceholderText('Enter Current Service Password')
+        self.e_cp .setPlaceholderText(str("entrez le mot de passe "))
         self.e_cp.setReadOnly(True)
         self.e_cp.setEchoMode(QLineEdit.Password)
         self.e_cp.setText(servicepassword_screen.currentservicepassword)
@@ -1448,9 +1430,9 @@ class servicepasswordscreen(QMdiSubWindow):
 
         self.e_np = extQLineEdit1(self)
         self.e_np.setFont(QFont('Arial', 18))
-        self.e_np.setGeometry(390,340,500,53)
+        self.e_np.setGeometry(390,440,500,53)
         self.e_np.setStyleSheet('background-color:white; color: black')
-        self.e_np.setPlaceholderText('Enter New Password')
+        self.e_np.setPlaceholderText(str("entrez le nouveau mot de passe"))
         self.e_np.setReadOnly(True)
         self.e_np.setEchoMode(QLineEdit.Password)
         self.e_np.setText(servicepassword_screen.newservicepassword)
@@ -1458,15 +1440,15 @@ class servicepasswordscreen(QMdiSubWindow):
 
         self.e_cnp = extQLineEdit1(self)
         self.e_cnp.setFont(QFont('Arial', 18))
-        self.e_cnp.setGeometry(390,460,500,53)
+        self.e_cnp.setGeometry(390,560,500,53)
         self.e_cnp.setStyleSheet('background-color:white; color: black')
-        self.e_cnp.setPlaceholderText('Confirm New Password')
+        self.e_cnp.setPlaceholderText(str("confirmer le nouveau mot de "))
         self.e_cnp.setEchoMode(QLineEdit.Password)
         self.e_cnp.setText(servicepassword_screen.confirmservicepassword)
         self.e_cnp.speak.connect(partial(self.call_b,data='confirmservicepassword1'))
 
-        self.save = QPushButton('Save', self)
-        self.save.setGeometry(450,535,300,70)
+        self.save = QPushButton(str("sauvegarder"), self)
+        self.save.setGeometry(70,202,241,61)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -1477,16 +1459,11 @@ class servicepasswordscreen(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.save.clicked.connect(self.save1)
         
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(450,635,300,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -1495,23 +1472,23 @@ class servicepasswordscreen(QMdiSubWindow):
     def save1(self):
         if(self.e_cp.text()!=self.passwordoriginal):
 
-            self.popup1=popup1(name='Please Enter Correct Previous Password! ',name2='Close')
+            self.popup1=popup1(name='Veuillez saisir le mot de passe précédent correct! ',name2='Close')
             self.popup1.show()
 
 
         elif(len(self.e_cp.text())==0 or len(self.e_np.text())==0 or len(self.e_cnp.text())==0):
 
-            self.popup1=popup1(name='              Please Enter All Values',name2='Close')
+            self.popup1=popup1(name='   Veuillez saisir toutes les valeurs',name2='Close')
             self.popup1.show()
 
         elif(self.e_np.text()!=self.e_cnp.text()):
 
-            self.popup1=popup1(name="      New password does not matched\n      confirmed password!",name2='Close')
+            self.popup1=popup1(name="le nouveau mot de passe ne correspond pas à confirmer le mot de passe!",name2='Close')
             self.popup1.show()
 
 
         elif(self.passwordoriginal==self.e_np.text() or self.passwordoriginal==self.e_cnp.text()):
-            self.popup1=popup1(name="        You cannot set the current password! ",name2='Close')
+            self.popup1=popup1(name="Vous ne pouvez pas définir le mot de passe actuel! ",name2='Close')
             self.popup1.show()
 
             
@@ -1523,7 +1500,7 @@ class servicepasswordscreen(QMdiSubWindow):
             conn.commit()
             c.close()               
             conn.close()
-            self.popup1=popup2(name="              Password has been updated!",name2='Close')
+            self.popup1=popup2(name="Le mot de passe a été mis à jour!",name2='Close')
             self.popup1.show()
             self.close()
             #self.destroy()
@@ -1586,58 +1563,52 @@ class performance(QMdiSubWindow):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.label = QLabel('Performance',self)
-        self.label.setFont(QFont('Arial', 21))
+        self.label = QLabel(str("Performance"),self)
+        self.label.setFont(QFont('Arial', 25))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(400,120,220,50)
+        self.label.setGeometry(400,125,270,50)
 
-        self.ttp = QLabel('Total Test Performed :',self)
-        self.ttp.setFont(QFont('Arial', 19))
+        self.ttp = QLabel('Total des tests effectués :',self)
+        self.ttp.setFont(QFont('Arial', 18))
         self.ttp.setStyleSheet('background-color:white; color: black')
         self.ttp.setGeometry(120,300,300,40)
         
-        self.ttc = QLabel('Total Test Completed : ',self)
-        self.ttc.setFont(QFont('Arial', 19))
+        self.ttc = QLabel('Test total terminé  : ',self)
+        self.ttc.setFont(QFont('Arial', 18))
         self.ttc.setStyleSheet('background-color:white; color: black')
         self.ttc.setGeometry(120,370,300,40)
         
-        self.tth = QLabel('Total Test Halted : ',self)
-        self.tth.setFont(QFont('Arial', 19))
+        self.tth = QLabel('Arrêt total du test  : ',self)
+        self.tth.setFont(QFont('Arial', 18))
         self.tth.setStyleSheet('background-color:white; color: black')
         self.tth.setGeometry(120,440,300,40)
 
         self.ttp1 = QLabel(self)
         self.ttp1.setFont(QFont('Arial', 19))
         self.ttp1.setStyleSheet('background-color:white; color: black')
-        self.ttp1.move(400,300)
+        self.ttp1.move(400,307)
         self.ttp1.setText(str(self.total))
         
         self.ttc1 = QLabel(self)
         self.ttc1.setFont(QFont('Arial', 19))
         self.ttc1.setStyleSheet('background-color:white; color: black')
-        self.ttc1.move(400,370)
+        self.ttc1.move(400,377)
         self.ttc1.setText(str(self.completed))
         
         self.tth1 = QLabel(self)
         self.tth1.setFont(QFont('Arial', 19))
         self.tth1.setStyleSheet('background-color:white; color: black')
-        self.tth1.move(400,440)
+        self.tth1.move(400,447)
         self.tth1.setText(str(self.halted))
 
         self.back = QPushButton('Back', self)
-        self.back.setGeometry(700,230,240,70)
+        self.back.setGeometry(700,202,240,60)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
-        self.show()
 
     def call_first1(self):
          self.close()
@@ -1665,28 +1636,27 @@ class alarmscreen(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Alarm Warning',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Alarme"),self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(430,125,270,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
     
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Date','Time','Alarm Status','Duration'])
+        self.dataView.setHeaderLabels([str("No"),str("Jour"),str("Heure"),str("état d'alarme"),str('durée')])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(3, QHeaderView.Stretch)
@@ -1694,10 +1664,13 @@ class alarmscreen(QMdiSubWindow):
         #self.dataView.header().setResizeMode(5, QHeaderView.Stretch)
         self.dataView.setColumnCount(5)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
+        self.dataView.setColumnWidth(0,10)
         self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(2,230)
+        self.dataView.setColumnWidth(3,230)
+        self.dataView.setColumnWidth(4,230)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -1759,38 +1732,39 @@ class powerscreen(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Electricity Faliure',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("alimentation "),self)
+        self.label.setFont(QFont('Arial', 27))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(400,125,270,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
     
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Date','Time','Power'])
+        self.dataView.setHeaderLabels([str("N° de réf."),str("DATE"),str("Heure"),str("alimentation ")])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(3, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(4, QHeaderView.Stretch)
         self.dataView.setColumnCount(4)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
+        self.dataView.setColumnWidth(0,230)
         self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(2,230)
+        self.dataView.setColumnWidth(3,0)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -1857,15 +1831,15 @@ class calibrationscreen(QMdiSubWindow):
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.label = QLabel('Calibration',self)
-        self.label.setFont(QFont('Arial', 21))
+        self.label = QLabel(str("Calibration"),self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(460,120,220,50)
+        self.label.setGeometry(450,125,400,50)
     
-        self.c1 = QPushButton('1 Point Calibration', self)
-        self.c1 .setGeometry(390,185,300,120)
+        self.c1 = QPushButton(str("Étalonnage en 1 point "), self)
+        self.c1 .setGeometry(390,285,300,70)
         self.c1 .setFont(QFont('Arial', 21))
         self.c1 .setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -1876,8 +1850,8 @@ class calibrationscreen(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.c1 .clicked.connect(self.p1calib)
 
-        self.c2 = QPushButton('2 Point Calibration', self)
-        self.c2 .setGeometry(390,330,300,120)
+        self.c2 = QPushButton(str("Étalonnage en 2 points "), self)
+        self.c2 .setGeometry(390,430,300,70)
         self.c2 .setFont(QFont('Arial', 21))
         self.c2 .setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -1888,8 +1862,8 @@ class calibrationscreen(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.c2.clicked.connect(self.p2calib)
 
-        self.c3 = QPushButton('3 Point Calibration', self)
-        self.c3.setGeometry(390,480,300,120)
+        self.c3 = QPushButton(str("Étalonnage en 3 points  "), self)
+        self.c3.setGeometry(390,580,300,70)
         self.c3.setFont(QFont('Arial', 21))
         self.c3.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -1900,16 +1874,11 @@ class calibrationscreen(QMdiSubWindow):
         #self.buttonWindow12.move(100, 100)
         self.c3.clicked.connect(self.p3calib)
         
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(400,635,300,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -1967,14 +1936,18 @@ class testing(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet('background-color:#f7f7ff;')
+        self.setStyleSheet('background-color:white;')
         self.label = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.ins_settings = QPushButton(' Printer Testing', self)
+        self.label = QLabel(str("Dispositifs de test"),self)
+        self.label.setFont(QFont('Arial', 25))
+        self.label.setStyleSheet('background-color:white; color: black')
+        self.label.setGeometry(400,125,300,50)
+        self.ins_settings = QPushButton(str("Réglage de l'imprimante"), self)
         self.ins_settings.setFont(QFont('Arial', 25))
-        self.ins_settings.setGeometry(370,200,285,125)
+        self.ins_settings.setGeometry(370,300,285,105)
         self.ins_settings.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -1982,9 +1955,9 @@ class testing(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.ins_settings.clicked.connect(self.instrumentsettingswindow)
-        self.service = QPushButton('Buzzer Testing', self)
+        self.service = QPushButton(str("Réglage du buzzer"), self)
         self.service.setFont(QFont('Arial', 25))
-        self.service.setGeometry(370,400,285,125)
+        self.service.setGeometry(370,500,285,105)
         self.service.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -1992,15 +1965,11 @@ class testing(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.service.clicked.connect(self.servicewindow)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(370,590,280,100)
+        back="\u2190      retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -2054,13 +2023,17 @@ class notification1(QMdiSubWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel(self)
+        self.label = QLabel(self)#('\u062a\u0646\u0628\u064a\u0647')
         #self.pixmap = QPixmap('header.png')
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.b_power = QPushButton('Power Failure', self)
+        self.label = QLabel(str("Notification"),self)
+        self.label.setFont(QFont('Arial', 25))
+        self.label.setStyleSheet('background-color:white; color: black')
+        self.label.setGeometry(400,125,450,50)
+        self.b_power = QPushButton(str("panne de courant "), self)
         self.b_power.setFont(QFont('Arial', 25))
-        self.b_power.setGeometry(370,200,285,125)
+        self.b_power.setGeometry(370,300,285,95)
         self.b_power.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -2069,9 +2042,9 @@ class notification1(QMdiSubWindow):
 "padding: 4px; color: black")
         self.b_power.clicked.connect(self.power)
         
-        self.b_alarm = QPushButton('Alarm', self)
+        self.b_alarm = QPushButton(str("alarme"), self)
         self.b_alarm.setFont(QFont('Arial', 25))
-        self.b_alarm.setGeometry(370,400,285,125)
+        self.b_alarm.setGeometry(370,500,285,95)
         self.b_alarm.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -2079,16 +2052,11 @@ class notification1(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.b_alarm.clicked.connect(self.alarm1)
-        
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(370,590,280,100)
+        back="\u2190      retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -2134,25 +2102,22 @@ class selecttemperaturelimit(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Temperature Limit',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Limite de température"),self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(400,125,400,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Save', self)
-        self.selectuser.setGeometry(30,200,240,70)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
+        self.selectuser.setGeometry(30,202,241,61)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -2163,17 +2128,19 @@ class selecttemperaturelimit(QMdiSubWindow):
         self.selectuser.clicked.connect(self.call_save)
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Select Temperature Limit'])
+        self.dataView.setHeaderLabels([str("N° de réf."),str("Sélectionnez la limite de température ")])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataView.setColumnCount(2)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
-        self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(0,170)
+        self.dataView.setColumnWidth(1,700)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -2200,7 +2167,9 @@ class selecttemperaturelimit(QMdiSubWindow):
                 cplusminus=u'\u00B1'
                 vartemplimit=[cplusminus+' 2 Temperature',cplusminus+' 3 Temperature',cplusminus+' 4 Temperature',cplusminus+' 5 Temperature']
                 for i,x in enumerate(vartemplimit):
-                    QTreeWidgetItem(self.dataView,[str(i),x])
+                    xa=QTreeWidgetItem(self.dataView,[str(i),x])
+                    #xa.setTextAlignment(0,Qt.AlignRight)
+                    #xa.setTextAlignment(1,Qt.AlignRight)
     def call_back(self):
         self.close()
         #self.destroy()
@@ -2217,7 +2186,7 @@ class selecttemperaturelimit(QMdiSubWindow):
             windoww.win.addSubWindow(self.userswindow)
             self.userswindow.show()
         except:
-            self.popup1=popup1(name='    Please select any user to continue',name2='Okay!')
+            self.popup1=popup1(name='\u0645\u0646 \u0641\u0636\u0644\u0643 \u0627\u062e\u062a\u0631 \u0623\u064a \u0642\u064a\u0645\u0629',name2='Okay!')
             self.popup1.show()
         #pass
         #global getChildNode
@@ -2247,25 +2216,22 @@ class selecttimezone(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Select TimeZone',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("sélectionner le fuseau"),self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(400,125,300,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Save', self)
-        self.selectuser.setGeometry(30,200,240,70)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
+        self.selectuser.setGeometry(30,202,241,61)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -2276,17 +2242,19 @@ class selecttimezone(QMdiSubWindow):
         self.selectuser.clicked.connect(self.call_save)
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Select TimeZone'])
+        self.dataView.setHeaderLabels([str("N° de réf. "),"Sélectionnez le fuseau horaire"])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataView.setColumnCount(2)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
-        self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(0,170)
+        self.dataView.setColumnWidth(1,700)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -2345,25 +2313,22 @@ class selectlanguage(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Select Language',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Choisir la langue"),self)
+        self.label.setFont(QFont('Arial', 27))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(400,125,270,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Save', self)
-        self.selectuser.setGeometry(30,200,240,70)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
+        self.selectuser.setGeometry(80,202,241,61)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -2374,17 +2339,19 @@ class selectlanguage(QMdiSubWindow):
         self.selectuser.clicked.connect(self.call_save)
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Select Language'])
+        self.dataView.setHeaderLabels([str("N° de réf."),str("Chosir la langue")])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataView.setColumnCount(2)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
-        self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(0,170)
+        self.dataView.setColumnWidth(1,700)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -2406,6 +2373,9 @@ class selectlanguage(QMdiSubWindow):
     def insert_data(self):
                 #print(i,x)
                 QTreeWidgetItem(self.dataView,['1','English'])
+                QTreeWidgetItem(self.dataView,['2','Arabic'])
+                QTreeWidgetItem(self.dataView,['3','French'])
+
     def call_back(self):
         self.close()
         self.destroy()
@@ -2439,24 +2409,21 @@ class selectscreentimeout(QMdiSubWindow):
         #self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Screen TimeOut',self)
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Extinction de l'écran,"),self)
         self.label.setFont(QFont('Arial', 19))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
         self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,200,240,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Save', self)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
         self.selectuser.setGeometry(30,200,240,70)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2469,18 +2436,20 @@ class selectscreentimeout(QMdiSubWindow):
 
         self.dataViewss = QTreeWidget(self)
         self.dataViewss.setRootIsDecorated(False)
+        self.dataViewss.setAlternatingRowColors(True)
         
-        self.dataViewss.setHeaderLabels(['Ref No','Screen TimeOut'])
+        self.dataViewss.setHeaderLabels([str("N° de réf."),str("Extinction de l'écran,")])
         self.dataViewss.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataViewss.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataViewss.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataViewss.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataViewss.setColumnCount(2)
         
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataViewss.setColumnWidth(0,150)
-        self.dataViewss.setColumnWidth(1,230)
+        self.dataViewss.setColumnWidth(0,170)
+        self.dataViewss.setColumnWidth(1,700)
 
-        self.dataViewss.setStyleSheet('background-color:white;color: black;')
+        self.dataViewss.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataViewss.setFont(QFont('Times New Roman', 22))
         self.dataViewss.setGeometry(10,300,1010,465)
@@ -2541,24 +2510,21 @@ class selectprinter(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Select Printer',self)
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Choisir imprimante"),self)
         self.label.setFont(QFont('Arial', 19))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
         self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,200,240,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Save', self)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
         self.selectuser.setGeometry(30,200,240,70)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2570,17 +2536,19 @@ class selectprinter(QMdiSubWindow):
         self.selectuser.clicked.connect(self.call_save)
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','Select Printer'])
+        self.dataView.setHeaderLabels([str("N° de réf."),str("Choisir imprimante")])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataView.setColumnCount(2)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
-        self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(0,0)
+        self.dataView.setColumnWidth(1,800)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -2651,7 +2619,7 @@ class second_servicewindow(QMdiSubWindow):
         self.label.setStyleSheet('background-color:white; color: black')
         self.label.setGeometry(400,120,220,50)
         self.home = QPushButton('Home', self)
-        self.home.setGeometry(650,160,140,70)
+        self.home.setGeometry(450,202,240,60)
         self.home.setFont(QFont('Arial', 19))
         self.home.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -2660,17 +2628,12 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.home.clicked.connect(self.call_home)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(820,160,140,70)
+        self.back = QPushButton("\u2190      Retour        ", self)
+        self.back.setGeometry(700,202,240,60)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
-        self.language = QPushButton('Language', self)
+        self.language = QPushButton('Langue', self)
         self.language.setGeometry(120,230,250,90)
         self.language.setFont(QFont('Arial', 21))
         self.language.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2690,7 +2653,7 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.timezone.clicked.connect(self.call_timezone)
-        self.temp_limit = QPushButton('Temperature Limit', self)
+        self.temp_limit = QPushButton('Limite de température', self)
         self.temp_limit.setGeometry(120,470,250,90)
         self.temp_limit.setFont(QFont('Arial', 21))
         self.temp_limit.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2720,7 +2683,7 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.calibration.clicked.connect(self.call_calibration)
-        self.password = QPushButton('Password', self)
+        self.password = QPushButton('Mot de passe', self)
         self.password.setGeometry(410,470,250,90)
         self.password.setFont(QFont('Arial', 21))
         self.password.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2730,7 +2693,7 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.password.clicked.connect(self.call_password)
-        self.s_update = QPushButton('Software Update', self)
+        self.s_update = QPushButton('Mise à jour du logiciel', self)
         self.s_update.setGeometry(410,590,250,90)
         self.s_update.setFont(QFont('Arial', 21))
         self.s_update.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2740,7 +2703,7 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.s_update.clicked.connect(self.call_update)
-        self.f_reset = QPushButton('Factory Reset', self)
+        self.f_reset = QPushButton('Réinitialisation', self)
         self.f_reset.setGeometry(710,350,250,90)
         self.f_reset.setFont(QFont('Arial', 21))
         self.f_reset.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2750,7 +2713,7 @@ class second_servicewindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.f_reset.clicked.connect(self.call_factoryreset)
-        self.test = QPushButton('Test Devices', self)
+        self.test = QPushButton('Dispositifs de test', self)
         self.test.setGeometry(710,470,250,90)
         self.test.setFont(QFont('Arial', 21))
         self.test.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -2867,21 +2830,21 @@ class second_servicewindow(QMdiSubWindow):
             self._gif.setMovie(movie)
             movie.setSpeed(500)
             movie.start()
-            label1 = QLabel('Error',a)
+            label1 = QLabel(str("Erreur "),a)
             label1.setFont(QFont('Arialbold', 22))
             label1.setStyleSheet('background-color:white;border:0px solid white')
             label1.move(236,130)
-            label2 = QLabel('Are you sure you want to factory reset!',a)
+            label2 = QLabel(str("ete vous sur de vouloir reinsialiser"),a)
             label2.setFont(QFont('Arial', 19))
             label2.setStyleSheet('background-color:white;border:0px solid white')
             label2.move(50,170)
-            yes_delete = QPushButton('Yes !', a)
+            yes_delete = QPushButton(str("Oui"), a)
             yes_delete .setGeometry(50,240,240,90)
             yes_delete .setFont(QFont('Arial', 21))
             yes_delete .setStyleSheet('background-color:#d00403; color: white')
             yes_delete .clicked.connect(self.call_stopfinal)
             yes_delete .clicked.connect(call_no)
-            no = QPushButton('No', a)
+            no = QPushButton(str("Non"), a)
             no.setGeometry(270,240,240,90)
             no.setFont(QFont('Arial', 21))
             no.setStyleSheet('background-color:#4299ff; color: white')
@@ -2942,21 +2905,23 @@ class servicepasswordwindow(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Enter Password',self)
-        self.label.setFont(QFont('Arial', 21))
-        self.label.setGeometry(400,130,220,50)
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("mode de service"),self)
+        self.label.setFont(QFont('Arial', 22))
+        self.label.setGeometry(400,125,270,50)
         self.textbox = extQLineEdit1(self)
         self.textbox.setFont(QFont('Arial', 21))
-        self.textbox.setGeometry(370,250,280,60)
+        self.textbox.setGeometry(370,350,280,60)
         self.textbox.setReadOnly(True)
         self.textbox.setEchoMode(QLineEdit.Password)
         self.textbox.setText(password_screen.password)
         self.textbox.speak.connect(partial(self.call_b,data='pass'))
         #self.textbox.move(20, 20)
         #self.textbox.resize(280,40)
-        self.e_password = QPushButton('Enter Password', self)
-        self.e_password.setGeometry(370,370,280,100)
+        self.e_password = QPushButton(str("entrez le mot de passe"), self)
+        self.e_password.setGeometry(370,470,280,100)
         self.e_password.setFont(QFont('Arial', 21))
         self.e_password.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -2965,15 +2930,11 @@ class servicepasswordwindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.e_password.clicked.connect(self.call_second_service)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(370,500,280,100)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         self.show()
 
@@ -3037,27 +2998,27 @@ class settingswindow(QMdiSubWindow):
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.ins_settings = QPushButton('Instrument', self)
+        self.label2 = QLabel(str('réglage'),self)
+        self.label2.setFont(QFont('Arial', 22))
+        self.label2.setStyleSheet('background-color:white; color: black')
+        self.label2.setGeometry(500,125,270,50)
+        self.ins_settings = QPushButton(str("Instrument"), self)
         self.ins_settings.setFont(QFont('Arial', 25))
-        self.ins_settings.setGeometry(370,200,285,155)
+        self.ins_settings.setGeometry(370,300,285,155)
         self.ins_settings.setStyleSheet('background-image: url(setting.png);')
         self.ins_settings.clicked.connect(self.instrumentsettingswindow)
-        self.service = QPushButton('Service   ', self)
+        self.service = QPushButton(str("Service"), self)
         self.service.setFont(QFont('Arial', 25))
-        self.service.setGeometry(370,400,285,155)
+        self.service.setGeometry(370,500,285,155)
         self.service.setStyleSheet('background-image: url(setting.png);')
         self.service.clicked.connect(self.servicewindow)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(370,590,280,100)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         #self.buttonWindow12.move(100, 100)
         self.back.clicked.connect(self.call_first1)
         self.show()
@@ -3163,14 +3124,14 @@ class instrumentwindow(QMdiSubWindow):
         self.setStyleSheet('background-color:#f7f7ff;')
         self.background = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.background.setPixmap(QPixmap('graph_screen.png'))
+        self.background.setPixmap(QPixmap('graph_screen1.png'))
         self.background.setGeometry(0,100,1024,668)
-        self.label = QLabel('Instrument Settings',self)
+        self.label = QLabel('réglage des instruments',self)
         self.label.setFont(QFont('Arial', 19))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(400,120,220,50)
-        self.home = QPushButton('Home', self)
-        self.home.setGeometry(650,180,140,70)
+        self.label.setGeometry(400,120,300,50)
+        self.home = QPushButton('accueil', self)
+        self.home.setGeometry(200,202,240,60)
         self.home.setFont(QFont('Arial', 19))
         self.home.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -3179,18 +3140,14 @@ class instrumentwindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.home.clicked.connect(self.call_home)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(820,180,140,70)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,240,60)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
-        self.save = QPushButton('Save', self)
-        self.save.setGeometry(480,180,140,70)
+        self.save = QPushButton('sauvegarder', self)
+        self.save.setGeometry(450,202,240,60)
         self.save.setFont(QFont('Arial', 21))
         self.save.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -3199,29 +3156,29 @@ class instrumentwindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.save.clicked.connect(self.save1)
-        self.c_name = QLabel('Company Name',self)
+        self.c_name = QLabel("nom de l'entreprise",self)
         self.c_name.setFont(QFont('Arial', 16))
         self.c_name.setStyleSheet('background-color:white; color: black')
-        self.c_name.setGeometry(90,230,220,50)
+        self.c_name.setGeometry(90,270,220,50)
         self.c_name_entry = extQLineEdit1(self)
         self.c_name_entry.setFont(QFont('Arial', 16))
-        self.c_name_entry.setGeometry(90,270,240,40)
+        self.c_name_entry.setGeometry(90,310,240,40)
         self.c_name_entry.setStyleSheet('background-color:white; color: black')
         self.c_name_entry.setReadOnly(True)
         self.c_name_entry.setText(ins_screen.companyname)
         self.c_name_entry.speak.connect(partial(self.call_b,data='c_name'))
-        self.tele_no = QLabel('Telephone Number',self)
+        self.tele_no = QLabel('numéro de telephone',self)
         self.tele_no.setFont(QFont('Arial', 16))
         self.tele_no.setStyleSheet('background-color:white; color: black')
-        self.tele_no.setGeometry(90,330,220,50)
+        self.tele_no.setGeometry(90,350,220,50)
         self.tele_no_entry = extQLineEdit1(self)
         self.tele_no_entry.setFont(QFont('Arial', 16))
-        self.tele_no_entry.setGeometry(90,370,240,40)
+        self.tele_no_entry.setGeometry(90,390,240,40)
         self.tele_no_entry.setStyleSheet('background-color:white; color: black')
         self.tele_no_entry.setReadOnly(True)
         self.tele_no_entry.setText(ins_screen.telephoneno)
         self.tele_no_entry.speak.connect(partial(self.call_b,data='tele_no'))
-        self.time = QLabel('Time',self)
+        self.time = QLabel('Heure',self)
         self.time.setFont(QFont('Arial', 16))
         self.time.setStyleSheet('background-color:white; color: black')
         self.time.setGeometry(90,430,220,50)
@@ -3243,7 +3200,7 @@ class instrumentwindow(QMdiSubWindow):
         #mm=self.s2.text()
         #print(mm)
         obj_Disk = psutil.disk_usage('/')
-        self.progress_l = QLabel('Disk Storage',self)
+        self.progress_l = QLabel('stockage sur disques',self)
         self.progress_l.setFont(QFont('Arial', 16))
         self.progress_l .setStyleSheet('background-color:white; color: black')
         self.progress_l .setGeometry(90,640,220,50)
@@ -3251,11 +3208,11 @@ class instrumentwindow(QMdiSubWindow):
         self.progress.setGeometry(90, 680, 300, 25)
         self.progress.setMaximum(100)
         self.progress.setValue(obj_Disk.percent) 
-        self.screentimeout = QLabel('Screen Timeout',self)
+        self.screentimeout = QLabel("Extinction de l'écran,",self)
         self.screentimeout.setFont(QFont('Arial', 16))
         self.screentimeout.setStyleSheet('background-color:white; color: black')
         self.screentimeout.setGeometry(500,330,220,50)
-        self.b_timeout = QPushButton('Screen Timeout', self)
+        self.b_timeout = QPushButton("Extinction de l'écran,", self)
         self.b_timeout.setGeometry(500,380,240,90)
         self.b_timeout.setFont(QFont('Arial', 19))
         self.b_timeout.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -3265,7 +3222,7 @@ class instrumentwindow(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.b_timeout.clicked.connect(self.call_screentimeout)
-        self.printer = QLabel('Printer',self)
+        self.printer = QLabel('imprimante',self)
         self.printer.setFont(QFont('Arial', 16))
         self.printer.setStyleSheet("background-color:white;color:black;")
 # "font: 14pt \"Arial\";\n"
@@ -3274,7 +3231,7 @@ class instrumentwindow(QMdiSubWindow):
 # "border-color: black;\n"
 # "padding: 4px; color: black")
         self.printer.setGeometry(500,490,220,50)
-        self.b_printer = QPushButton('Select Printer', self)
+        self.b_printer = QPushButton('Choisir imprimante', self)
         self.b_printer.setGeometry(500,540,240,90)
         self.b_printer.setFont(QFont('Arial', 19))
         self.b_printer.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -3344,7 +3301,7 @@ class instrumentwindow(QMdiSubWindow):
         conn.commit()
         c.close()               
         conn.close()
-        self.popup1=popup2(name='      Your Configuration has been saved',name2='Close')
+        self.popup1=popup2(name=str('Votre modificstion a eter enregistrer'),name2=str("Fermer"))
         self.popup1.show()
 
 class damper_screen(QMdiSubWindow):
@@ -3375,19 +3332,18 @@ class damper_screen(QMdiSubWindow):
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
-        self.setStyleSheet("background-color:#f7f7ff;")
-        self.label = QLabel('Damper Screen',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Amortisseur"),self)
+        self.label.setFont(QFont('Arial', 25))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black;')
-        self.label.setGeometry(450,110,220,50)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,160,240,70)
+        self.label.setGeometry(450,125,270,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
-border-width: 0.5px;
-border-radius: 0px;
-border-color: black;
-padding: 4px; color: black''')
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_first1)
         
         self.d_off = QPushButton('Off 0%', self)
@@ -3399,7 +3355,7 @@ padding: 4px; color: black''')
         
         self.d_off.clicked.connect(lambda doff:self.d_off_on(doff))
         
-        self.d_50 = QPushButton('Half 50 %', self)
+        self.d_50 = QPushButton('MOITIÉ 50 %', self)
         self.d_50.setCheckable(True)
         self.d_50.setGeometry(105,390,240,120)
         self.d_50.setFont(QFont('Arial', 21))
@@ -3410,7 +3366,7 @@ padding: 4px; color: black''')
         #self.d_50.setStyleSheet("QPushButton:checked{background-color: white;}")
         self.d_50.clicked.connect(lambda d50:self.d_50_on(d50))
         
-        self.d_100 = QPushButton('Full 100 %', self)
+        self.d_100 = QPushButton('PLEIN 100 %', self)
         self.d_100.setCheckable(True)
         self.d_100.setChecked(bool(self.d100))
         self.d_100.setGeometry(105,540,240,120)
@@ -3447,7 +3403,7 @@ padding: 4px; color: black''')
         c.close()               
         conn.close()
 
-        self.popup1=popup2(name='             Damper is turned to 50 %',name2='Close')
+        self.popup1=popup2(name=str('                      Amortiseeur a 50%.'),name2=str('Fermer'))
         self.popup1.show()
 
     def d_off_on(self,doff):
@@ -3477,7 +3433,7 @@ padding: 4px; color: black''')
         conn.commit()
         c.close()               
         conn.close()
-        self.popup1=popup2(name='               Damper is turned off',name2='Close')
+        self.popup1=popup2(name=str('                  Amortiseeur a 0%.'),name2=str('Fermer'))
         self.popup1.show()
 
     def d_100_on(self,d100):
@@ -3508,7 +3464,7 @@ padding: 4px; color: black''')
         conn.commit()
         c.close()               
         conn.close()
-        self.popup1=popup2(name='              Damper is turned to 100 %',name2='Close')
+        self.popup1=popup2(name=str('                     Amortiseeur a 100%.'),name2=str('Fermer'))
         self.popup1.show()
     def call_first1(self):
         self.close()
@@ -3532,18 +3488,14 @@ class about_screen(QMdiSubWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet("background-color:#f7f7ff;")
-        self.label = QLabel('About Us',self)
+        self.label = QLabel('À propos de nous',self)
         self.label.setFont(QFont('Arial', 19))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
         self.label.setGeometry(450,110,220,50)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,160,240,70)
+        self.back = QPushButton("\u2190      Retour        ", self)
+        self.back.setGeometry(700,160,240,70)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
-border-width: 0.5px;
-border-radius: 0px;
-border-color: black;
-padding: 4px; color: black''')
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_first1)
         self.plainText = QPlainTextEdit(self)
         self.plainText.setStyleSheet('background-color:white; color: black')
@@ -3551,24 +3503,8 @@ padding: 4px; color: black''')
         self.plainText.setFont(QFont('Arial',20))
         self.plainText.setReadOnly(True)
         self.plainText.setGeometry(10,250,1000,500)
-        self.quote = """Anamed Systems was established back in 2006 with an aim in mind to provide the best medical and laboratory instruments to all over the world. Company 
-has successfully achieved its target over the period of 13 years in the industry and now moving forward with a drastic pace to accomplish the vision of it’s 
-founder.
-Anamed Systems was installed with an purpose in thoughts to provide the 
-excellent Medical and laboratory instruments to everywhere in the international.
-Company has successfully performed its target over the length of thirteen 
-years inside the industry and now transferring forward with a drastic tempo to 
-perform the imaginative and prescient of it’s founder.
-Anamed Systems is the specialized supplier of revolutionary heat technology
-merchandise of drying, incubating and hot air sterilization carried out in 
-studies, improvement, production and satisfactory guarantee.
-As a member of Anamed Systems, KSA is specialized inside the income and 
-carrier of these super merchandise. This technologically leading product line is based on a knowledge amassed over a few years and meets the needs and 
-requirements of an ever changing marketplace.
-Competent consulting, an international energetic network of buyers and a 
-properly skilled group of provider technicians are the foundation of happy 
-customers."""
-        
+        self.quote = str("""Anamed Systems a été créé en 2006 dans le but de fournir les meilleurs instruments médicaux et de laboratoire au monde entier. La société a atteint son objectif avec succès en 13 ans d'existence et avance maintenant à un rythme effréné pour réaliser la vision de son fondateur. Anamed Systems a été installé dans le but de fournir les meilleurs instruments médicaux et de laboratoire partout dans le monde. La société a atteint son objectif avec succès pendant treize ans dans l'industrie et avance maintenant à un rythme effréné pour réaliser l'imagination et la vision de son fondateur. Anamed Systems est le fournisseur spécialisé d'une marchandise révolutionnaire de technologie thermique de séchage, d'incubation et de stérilisation à l'air chaud réalisée en études, amélioration, production et garantie satisfaisante. En tant que membre d'Anamed Systems, KSA est spécialisé dans le revenu et le transport de ces super marchandises. Cette ligne de produits à la pointe de la technologie est basée sur un savoir accumulé en quelques années et répond aux besoins et aux exigences d'un marché en constante évolution. Un conseil compétent, un réseau international dynamique d'acheteurs et un Les techniciens des prestataires de services, dûment qualifiés, sont la base d'une clients.
+""")
         self.plainText.appendPlainText(self.quote)
         self.plainText.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.plainText.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
@@ -3611,9 +3547,6 @@ class graphresultwindowsecond(QMdiSubWindow):
     def startui(self):
         self.getting_table_data()       
     def InitUI1(self):
-        self.setWindowTitle(self.title)
-
-        #self.setStyleSheet("background-image: url(header.png);")
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
@@ -3621,9 +3554,13 @@ class graphresultwindowsecond(QMdiSubWindow):
         #self.pixmap = QPixmap('header.png')
         self.label.setPixmap(QPixmap('resultscreen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.back = QPushButton('Back', self)
+        self.label2 = QLabel(str("Détails du test"),self)
+        self.label2.setFont(QFont('Arial', 22))
+        self.label2.setStyleSheet('background-color:white; color: black')
+        self.label2.setGeometry(450,110,400,50)
+        self.back = QPushButton('Retour', self)
         self.back.setGeometry(80,610,180,80)
-        self.back.setFont(QFont('Arial', 21))
+        self.back.setFont(QFont('Arial', 18))
         self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -3631,9 +3568,9 @@ class graphresultwindowsecond(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.back.clicked.connect(self.call_first1)
-        self.print = QPushButton('Print', self)
+        self.print = QPushButton('Imprimer', self)
         self.print.setGeometry(280,610,180,80)
-        self.print.setFont(QFont('Arial', 21))
+        self.print.setFont(QFont('Arial', 18))
         self.print.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -3641,9 +3578,9 @@ class graphresultwindowsecond(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.print.clicked.connect(self.call_first1)
-        self.exportcsv = QPushButton('Export Csv', self)
-        self.exportcsv.setGeometry(480,610,180,80)
-        self.exportcsv.setFont(QFont('Arial', 21))
+        self.exportcsv = QPushButton('Exporter Csv vers USB', self)
+        self.exportcsv.setGeometry(480,610,220,80)
+        self.exportcsv.setFont(QFont('Arial', 18))
         self.exportcsv.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -3651,9 +3588,9 @@ class graphresultwindowsecond(QMdiSubWindow):
 "border-color: black;\n"
 "padding: 4px; color: black")
         self.exportcsv.clicked.connect(self.call_first1)
-        self.exportgraph = QPushButton('Export Graph', self)
-        self.exportgraph.setGeometry(680,610,180,80)
-        self.exportgraph.setFont(QFont('Arial', 21))
+        self.exportgraph = QPushButton('Sauvegarder en Usb', self)
+        self.exportgraph.setGeometry(720,610,180,80)
+        self.exportgraph.setFont(QFont('Arial', 18))
         self.exportgraph.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
@@ -3676,49 +3613,49 @@ class graphresultwindowsecond(QMdiSubWindow):
         #self.xax.setTicks(ticks)
         pen = pg.mkPen(color=(255, 0, 0))
         self.data_line =  self.graphWidget.plot(self.df_faisal['Time'], self.df_faisal['Temperature'], pen=pen)
-        self.temperature = QLabel("Temperature",self)
-        self.temperature.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
-        self.temperature.setGeometry(100,175,140,75)
+        self.temperature = QLabel("consigne de Température",self)
+        self.temperature.setFont(QFont('Arial', 16))
+        self.temperature.setStyleSheet('background-color:white; color: black;')
+        self.temperature.setGeometry(80,175,180,75)
 
-        self.timer = QLabel("Timer",self)
-        self.timer.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
-        self.timer.setGeometry(100,290,140,75)
+        self.timer = QLabel("Régler la minuterie",self)
+        self.timer.setFont(QFont('Arial', 16))
+        self.timer.setStyleSheet('background-color:white; color: black;')
+        self.timer.setGeometry(80,290,180,75)
 
                 
-        self.username = QLabel("User Name",self)
-        self.username.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
-        self.username.setGeometry(100,395,140,75)
+        self.username = QLabel("Définir l'utilisateur",self)
+        self.username.setFont(QFont('Arial', 16))
+        self.username.setStyleSheet('background-color:white; color: black;')
+        self.username.setGeometry(80,395,180,75)
         
-        self.status = QLabel("Status",self)
-        self.status.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
-        self.status.setGeometry(100,505,100,75)
+        self.status = QLabel("Statut",self)
+        self.status.setFont(QFont('Arial', 16))
+        self.status.setStyleSheet('background-color:white; color: black;')
+        self.status.setGeometry(80,505,180,75)
         
         self.temperature = QLabel(self)
         self.temperature.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
+        self.temperature.setStyleSheet('background-color:white; color: black;')
         self.temperature.setGeometry(340,175,170,75)
         self.temperature.setText(self.set_temperature)
 
         self.timer = QLabel(self)
         self.timer.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
+        self.timer.setStyleSheet('background-color:white; color: black;')
         self.timer.setGeometry(340,290,170,75)
         self.timer.setText(self.set_timer)
 
                 
         self.username = QLabel(self)
         self.username.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
+        self.username.setStyleSheet('background-color:white; color: black;')
         self.username.setGeometry(340,395,170,75)
         self.username.setText(self.set_username)
         
         self.status = QLabel(self)
         self.status.setFont(QFont('Arial', 19))
-        #self.set_temp_data.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 2px;')
+        self.status.setStyleSheet('background-color:white; color: black;')
         self.status.setGeometry(340,505,170,75)
         self.status.setText(self.set_status)
 
@@ -3767,8 +3704,10 @@ class result_window(QMdiSubWindow):
         #scroll_area=QScrollArea(self)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Results Data',self)
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("Données sur les résultats"),self)
 
 
         font = QFont()
@@ -3778,10 +3717,10 @@ class result_window(QMdiSubWindow):
         font.setPointSize (21)
         self.label.setFont(font)
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(450,100,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,160,230,70)
+        self.label.setGeometry(370,115,400,50)
+        back="\u2190        Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(750,202,230,70)
         effect = QGraphicsDropShadowEffect(self.back)
         effect.setOffset(0, 0)
         effect.setBlurRadius(20)
@@ -3793,12 +3732,12 @@ class result_window(QMdiSubWindow):
         font.setPointSize (15)
         self.back.setFont(font)
         #self.back.setStyleSheet(("QPushButton{background-color:#008CBA; color: white;border-style: ridge;border-width:0px;border-radius: 10px;border-color: #008CBA;} QPushButton:hover { background-color:red;color:white; }"))
-        self.back.setStyleSheet(("QPushButton{background-color:#4299ff; color: black;border-style: ridge;border-width:0px;border-radius: 10px;border-color: #008CBA;}"))
+        self.back.setStyleSheet(("QPushButton{background-color:#C9282F; color: black;border-style: ridge;border-width:1px;border-radius: 10px;border-color:#C9282F;}"))
         
         self.back.clicked.connect(self.call_back)
 
-        self.exp_result = QPushButton('Export All Results', self)
-        self.exp_result.setGeometry(30,160,230,70)
+        self.exp_result = QPushButton(str("Données sur les résultats"), self)
+        self.exp_result.setGeometry(30,202,230,70)
         effect = QGraphicsDropShadowEffect(self.exp_result)
         effect.setOffset(0, 0)
         effect.setBlurRadius(20)
@@ -3812,8 +3751,8 @@ class result_window(QMdiSubWindow):
         self.exp_result.setStyleSheet(("QPushButton{background-color:#4299ff; color: black;border-style: ridge;border-width:0px;border-radius: 10px;border-color: #008CBA;}"))
         
         self.exp_result.clicked.connect(self.ex_result)
-        self.show_aresult = QPushButton('Show All Results', self)
-        self.show_aresult.setGeometry(270,160,230,70)
+        self.show_aresult = QPushButton(str("Afficher tous les résultats"), self)
+        self.show_aresult.setGeometry(270,202,230,70)
         effect = QGraphicsDropShadowEffect(self.show_aresult)
         effect.setOffset(0, 0)
         effect.setBlurRadius(20)
@@ -3829,8 +3768,8 @@ class result_window(QMdiSubWindow):
         
         self.show_aresult.clicked.connect(self.insert_data)
         
-        self.view_result = QPushButton('View Result', self)
-        self.view_result.setGeometry(510,160,230,70)
+        self.view_result = QPushButton(str("Voir le résultat"), self)
+        self.view_result.setGeometry(510,202,230,70)
         effect = QGraphicsDropShadowEffect(self.view_result)
         effect.setOffset(0, 0)
         effect.setBlurRadius(20)
@@ -3847,31 +3786,37 @@ class result_window(QMdiSubWindow):
         self.view_result.clicked.connect(self.view_result1)
 
         self.comboBox = QComboBox(self)
-        self.comboBox.setGeometry(150, 270, 231, 60)
+        self.comboBox.setGeometry(150, 310, 231, 60)
+        #self.comboBox.lineEdit().setReadOnly(true);
+        #self.comboBox.lineEdit.setAlignment(Qt.AlignRight)
+        #comboBox.lineEdit()->setAlignment(Qt::AlignCenter);
         self.comboBox.setCursor(QCursor(Qt.ArrowCursor))
+        #self.comboBox.setLayoutDirection(Qt.RightToLeft);
+        #self.comboBox.setMinimumWidth(250);
         self.comboBox.setAcceptDrops(False)
-        self.comboBox.setStyleSheet("font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);")
+        self.comboBox.setStyleSheet("QComboBox{font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);}")
+
         self.comboBox.setEditable(False)
         self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("Date")
-        self.comboBox.addItem("Temperature")
-        self.comboBox.addItem("Timer")
-        self.comboBox.addItem("Username")
-        self.comboBox.addItem("Fanspeed")
-        self.comboBox.addItem("Level")
-        self.comboBox.addItem("Status")
+        self.comboBox.addItem(str("Date"))
+        self.comboBox.addItem(str("Minuterie"))
+        self.comboBox.addItem(str("température"))
+        self.comboBox.addItem(str("Nom d'utilisateur"))
+        self.comboBox.addItem(str("Vitesse du ventilateur"))
+        self.comboBox.addItem(str("niveau"))
+        self.comboBox.addItem(str("Statut"))
         self.comboBox.setCurrentText(result_screen.searchkey)
         self.search = extQLineEdit1(self)
-        self.search.setGeometry(410, 270, 251, 60)
+        self.search.setGeometry(410, 310, 251, 60)
         self.search.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.search.setObjectName("lineEdit_3")
         self.search.setFont(QFont('Arial', 21))
-        self.search.setPlaceholderText('Enter Key Word')
+        self.search.setPlaceholderText(str("Entrez le mot-clé"))
         self.search.setReadOnly(True)
         self.search.setText(result_screen.result)
         self.search.speak.connect(partial(self.call_b,data='result'))
-        self.search_b = QPushButton('Search', self)
-        self.search_b.setGeometry(680,270,200,60)
+        self.search_b = QPushButton(str("Recherchez"), self)
+        self.search_b.setGeometry(680,310,200,60)
         effect = QGraphicsDropShadowEffect(self.search_b)
         effect.setOffset(0, 0)
         effect.setBlurRadius(20)
@@ -3889,6 +3834,7 @@ class result_window(QMdiSubWindow):
 
 
         self.dataView = QTreeWidget(self)
+        #self.dataView.setAlternatingRowColors(True)
         # scroll_area.setWidget(self.dataView)
         # scroll_area.setGeometry(10,350,1000,415)
         # QScroller.grabGesture(scroll_area.viewport(), QScroller.LeftMouseButtonGesture)
@@ -3896,11 +3842,11 @@ class result_window(QMdiSubWindow):
         #self.dataView.model=QAbstractItemModel()
         self.dataView.setRootIsDecorated(False)
 
-        self.dataView.setHeaderLabels(['No','Date/\nTime','Temperature','Timer','User\nName','Fan\nSpeed','Level','Status'])
+        self.dataView.setHeaderLabels([str("No"),str("Date\n/Heure"),str("température"),str("Minuterie"),str("Nom d'utilisateur"),str("Vitesse du ventilateur"),str("niveau"),str("Statut")])
 
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:14pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
-
-
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
+#ui->myTreeWidget->header()->setDefaultAlignment(Qt::AlignCenter);
 
         self.dataView.setColumnCount(8)
         #self.dataView.setSizeHint(0,QSize(10,10))
@@ -3917,12 +3863,13 @@ class result_window(QMdiSubWindow):
         self.dataView.setColumnWidth(8,0)
 
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet('QTreeWidget{background-color:white;color: black;}' 'QTreeWidget:item {border: 1px solid #d9d9d9;border-top-color: black;border-bottom-color: transparent;color:black;} QTreeWidget:item:selected{background-color:#4c94f7}')
         self.dataView.setFont(QFont('Times New Roman', 18))
-        self.dataView.setGeometry(10,350,1000,415)
+        self.dataView.setGeometry(10,390,1000,375)
         self.dataView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
         self.dataView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         #self.dataView.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
+        #self.dataView.setTextAlignment(self,Qt.AlignRight)
         self.dataView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
         #self.dataView.setMouseEnabled(x=False)
         #self.dataView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
@@ -3972,8 +3919,8 @@ class result_window(QMdiSubWindow):
                 l.append(row)
             for i,x in enumerate(l):
                 #print(i,x)
-                QTreeWidgetItem(self.dataView,[str(i),x[0]+str('\n')+x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]]) 
 
+                QTreeWidgetItem(self.dataView,[str(i),x[0]+str('\n')+x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]])
             conn.commit()
             c.close()
             conn.close()
@@ -3996,27 +3943,45 @@ class result_window(QMdiSubWindow):
 
         except:
             print("error")
-            self.popup1=popup1(name='            Please select any value !',name2='Close')
+            self.popup1=popup1(name="Veuillez sélectionner n'importe quelle valeur",name2='Close')
             self.popup1.show()
     def view_search(self):
-        self.popup1=popup2(name='         The results has been updated !',name2='Close')
+        self.popup1=popup2(name='          Les résultats ont été mis à jour!',name2='Close')
         self.popup1.show()
         self.dataView.clear()
         mg=self.search.text()
         mg.strip()
         temp_search=self.comboBox.currentText()
         temp_search.strip()
+        if(temp_search==str("Date")):
+          temp_search="Date"
+        elif(temp_search==str("température")):
+          temp_search="Temperature"
+        elif(temp_search==str("Minuterie")):
+          temp_search="Timer"
+        elif(temp_search==str("Nom d'utilisateur")):
+          temp_search="Username"
+        elif(temp_search==str("Vitesse du ventilateur")):
+          temp_search="FanSpeed"
+        elif(temp_search==str("niveau")):
+          temp_search="Level"
+        elif(temp_search==str("Statut")):
+          temp_search="Status"
         print(mg,temp_search)
         l=[]
         conn = sqlite3.connect('faisal.db')
         c = conn.cursor()
+        #import unicodedata
+        #temp_search=unicodedata.normalize('NFKD', temp_search).encode('ascii','ignore')
+        #temp_search.encode('ascii','replace')
+        #print(temp_search)
         y=c.execute(f"SELECT * from result WHERE {temp_search} LIKE '{mg}%' OR {temp_search} LIKE '0{mg}%' order by Key DESC ")
         for row in y:
             #print(row)
             l.append(row)
         for i,x in enumerate(l):
             #print(i,x)
-            QTreeWidgetItem(self.dataView,[str(i),x[0]+str('\n')+x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]]) 
+            QTreeWidgetItem(self.dataView,[str(i),x[0]+str('\n')+x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8]])
 
         conn.commit()
         c.close()
@@ -4096,7 +4061,7 @@ class running_window(QMdiSubWindow):
         #self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
 
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        buttonWindow1 = QPushButton('View Running Test', self)
+        buttonWindow1 = QPushButton('\u0639\u0631\u0636 \u0627\u062e\u062a\u0628\u0627\u0631 \u0627\u0644\u062a\u0634\u063a\u064a\u0644', self)
         buttonWindow1.setFont(QFont('Arial', 22))
         buttonWindow1.setGeometry(20,160,285,155)
         buttonWindow1.setStyleSheet("background-color:red;border: none;border-style: outset;\n"
@@ -4109,27 +4074,27 @@ class running_window(QMdiSubWindow):
         Settings = QPushButton('Settings  ', self)
         Settings.setFont(QFont('Arial', 27))
         Settings.setGeometry(20,350,285,155)
-        Settings.setStyleSheet('background-image: url(setting.png);')
+        Settings.setStyleSheet('background-image: url(setting2.png);')
         Settings.clicked.connect(self.settingswindow)
         User = QPushButton('User      ', self)
         User.setFont(QFont('Arial', 27))
         User.setGeometry(20,540,285,155)
-        User.setStyleSheet('background-image: url(user.png);')
+        User.setStyleSheet('background-image: url(user2.png);')
         User.clicked.connect(self.userswindow)
         Results = QPushButton('Results', self)
         Results.setFont(QFont('Arial', 27))
         Results.setGeometry(330,160,285,155)
-        Results.setStyleSheet('background-image: url(Result.png);')
+        Results.setStyleSheet('background-image: url(Result2.png);')
         Results.clicked.connect(self.resultswindow)
         About = QPushButton('About  ', self)
         About.setFont(QFont('Arial', 27))
         About.setGeometry(330,350,285,155)
-        About.setStyleSheet('background-image: url(about.png);')
+        About.setStyleSheet('background-image: url(about2.png);')
         About.clicked.connect(self.aboutwindow)
         Damper = QPushButton('Damper ', self)
         Damper.setFont(QFont('Arial', 27))
         Damper.setGeometry(330,540,285,155)
-        Damper.setStyleSheet('background-image: url(damper.png);')
+        Damper.setStyleSheet('background-image: url(damper1.png);')
         Damper.clicked.connect(self.damperwindow)
         self.n = QPushButton(self)
         self.n.setFont(QFont('Arial', 27))
@@ -4416,6 +4381,7 @@ class MyStringAxis(pg.AxisItem):
                     vstr = ""
                 strings.append(vstr)
             return strings
+
 class selectuserscreen(QMdiSubWindow):
     def __init__(self,mainwindowshow):
     #def __init__(self,name):
@@ -4435,25 +4401,22 @@ class selectuserscreen(QMdiSubWindow):
         self.setWindowModality(Qt.ApplicationModal)
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Select User',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        self.label = QLabel(str("sélectionner le nom d'utilisateur"),self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,200,240,70)
+        self.label.setGeometry(350,125,400,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
         
-        self.selectuser = QPushButton('Select User', self)
-        self.selectuser.setGeometry(30,200,240,70)
+        self.selectuser = QPushButton(str("sauvegarder"), self)
+        self.selectuser.setGeometry(80,202,241,61)
         self.selectuser.setFont(QFont('Arial', 21))
         self.selectuser.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -4464,17 +4427,19 @@ class selectuserscreen(QMdiSubWindow):
         self.selectuser.clicked.connect(self.call_select)
 
         self.dataView = QTreeWidget(self)
+        self.dataView.setAlternatingRowColors(True)
         self.dataView.setRootIsDecorated(False)
-        self.dataView.setHeaderLabels(['Ref No','User Name'])
+        self.dataView.setHeaderLabels([str("N° de réf."),str("Nom d'utilisateur")])
         self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
         self.dataView.setColumnCount(2)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,150)
-        self.dataView.setColumnWidth(1,230)
+        self.dataView.setColumnWidth(0,170)
+        self.dataView.setColumnWidth(1,700)
 
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         self.dataView.setGeometry(10,300,1010,465)
@@ -4505,6 +4470,7 @@ class selectuserscreen(QMdiSubWindow):
             for i,x in enumerate(l):
                 #print(i,x)
                 QTreeWidgetItem(self.dataView,[str(i),x[0]])
+
     def call_back(self):
         self.close()
         #self.destroy()
@@ -4523,7 +4489,7 @@ class selectuserscreen(QMdiSubWindow):
             windoww.win.addSubWindow(self.userswindow)
             self.userswindow.show()
         except:
-            self.popup1=popup1(name='    Please select any user to continue',name2='Okay!')
+            self.popup1=popup1(name=str("Veuillez sélectionner n'importe quel valeu"),name2=str("Ok"))
             self.popup1.show()
 
 
@@ -4697,7 +4663,7 @@ border-color: black;
 padding: 4px; color: black''')
         k0.clicked.connect(self.insert_text)
         
-        kinf = QPushButton('infinity', self)
+        kinf = QPushButton(str("infinity"), self)
         kinf.setGeometry(670,545,297,100)
         kinf.setFont(QFont('Arial', 28))
         kinf.setStyleSheet('''background-color:white;border: none;border-style: outset;
@@ -4758,12 +4724,12 @@ padding: 4px; color: black''')
                 text=self.entry.text()
                 sender = self.sender()
                 #print(self.sender())
-                if(str(sender.text())=='infinity'):
+                if(str(sender.text())==str("infinity")):
                     self.close()
                     # starttestdata.hours = self.entry.text()
                     # starttestdata.minutes = self.entry.text()
-                    starttestdata.hours = 'infinity'
-                    starttestdata.minutes = 'infinity'
+                    starttestdata.hours = str("infinity")
+                    starttestdata.minutes = str("infinity")
                     self.userswindow=startwindow(self.mainwindowshow)
                     windoww.win.addSubWindow(self.userswindow)
                     self.userswindow.show()
@@ -4793,22 +4759,22 @@ padding: 4px; color: black''')
                     windoww.win.addSubWindow(self.userswindow)
                     self.userswindow.show()
             except NameError:
-                self.popup1=popup1(name='           Please enter valid temperature !',name2='Close')
+                self.popup1=popup1(name='Veuillez entrer une température valide',name2='Close')
                 self.popup1.show()
             except ValueError:
-                self.popup1=popup1(name='           Pleae enter hours less than 100.',name2='Close')
+                self.popup1=popup1(name='Pleae enter hours less than 100.',name2='Close')
                 self.popup1.show()
         elif(self.previouswindow=='minutes' ):
             try:
                 text=self.entry.text()
                 sender = self.sender()
                 #print(self.sender())
-                if(str(sender.text())=='infinity'):
+                if(str(sender.text())==str("infinity")):
                     self.close()
                     # starttestdata.hours = self.entry.text()
                     # starttestdata.minutes = self.entry.text()
-                    starttestdata.hours = 'infinity'
-                    starttestdata.minutes = 'infinity'
+                    starttestdata.hours = str("infinity")
+                    starttestdata.minutes = str("infinity")
                     self.userswindow=startwindow(self.mainwindowshow)
                     windoww.win.addSubWindow(self.userswindow)
                     self.userswindow.show()
@@ -4826,7 +4792,7 @@ padding: 4px; color: black''')
                     raise ValueError
                 
                 #print(y.username,'ee')
-                elif(text=='infinity'):
+                elif(text==str("infinity")):
                     self.close()
                     starttestdata.hours = self.entry.text()
                     starttestdata.minutes = self.entry.text()
@@ -4843,10 +4809,10 @@ padding: 4px; color: black''')
                     windoww.win.addSubWindow(self.userswindow)
                     self.userswindow.show()
             except NameError:
-                self.popup1=popup1(name='           Please enter valid temperature !',name2='Close')
+                self.popup1=popup1(name='     Veuillez entrer une température valide',name2='Close')
                 self.popup1.show()
             except ValueError:
-                self.popup1=popup1(name='           Pleae enter minutes less than 60.',name2='Close')
+                self.popup1=popup1(name='  Veuillez saisir des minutes moins de 60',name2='Close')
                 self.popup1.show()
 
 
@@ -5122,10 +5088,10 @@ padding: 4px; color: black''')
                     # self.userswindow=startwindow(self.mainwindowshow)
                     # self.userswindow.show()
             except NameError:
-                self.popup1=popup1(name='           Please enter valid temperature !',name2='Close')
+                self.popup1=popup1(name='Veuillez entrer une température valide',name2='Close')
                 self.popup1.show()
             except ValueError:
-                self.popup1=popup1(name='Pleae enter temperature less than 300\n and greater than 25.',name2='Close')
+                self.popup1=popup1(name='Veuillez saisir une température supérieure\n à 300 et supérieure à 25.',name2='Close')
                 self.popup1.show()
 
 
@@ -5189,51 +5155,51 @@ class graphresultwindow(QMdiSubWindow):
         #self.pixmap = QPixmap('header.png')
         self.label.setPixmap(QPixmap('resultscreen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.back = QPushButton('Home', self)
+        self.label2 = QLabel(str("Détails du test"),self)
+        self.label2.setFont(QFont('Arial', 22))
+        self.label2.setStyleSheet('background-color:white; color: black')
+        self.label2.setGeometry(450,110,200,50)
+        self.back = QPushButton(str("maison"), self)
         self.back.setGeometry(80,610,180,80)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
-"font: 14pt \"Arial\";\n"
-"border-width: 1px;\n"
-"border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_first1)
-        self.print = QPushButton('Print', self)
+        self.print = QPushButton('Imprimer', self)
         self.print.setGeometry(280,610,180,80)
-        self.print.setFont(QFont('Arial', 21))
+        self.print.setFont(QFont('Arial', 18))
         self.print.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
 "border-radius: 15px;\n"
 "border-color: black;\n"
 "padding: 4px; color: black")
-        #self.print.clicked.connect(self.call_first1)
-        self.exportcsv = QPushButton('Export Csv', self)
-        self.exportcsv.setGeometry(480,610,180,80)
-        self.exportcsv.setFont(QFont('Arial', 21))
+        self.print.clicked.connect(self.call_first1)
+        self.exportcsv = QPushButton('Exporter Csv vers USB', self)
+        self.exportcsv.setGeometry(480,610,220,80)
+        self.exportcsv.setFont(QFont('Arial', 18))
         self.exportcsv.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
 "border-radius: 15px;\n"
 "border-color: black;\n"
 "padding: 4px; color: black")
-        #self.exportcsv.clicked.connect(self.call_first1)
-        self.exportgraph = QPushButton('Export Graph', self)
-        self.exportgraph.setGeometry(680,610,180,80)
-        self.exportgraph.setFont(QFont('Arial', 21))
+        self.exportcsv.clicked.connect(self.call_first1)
+        self.exportgraph = QPushButton('Sauvegarder en Usb', self)
+        self.exportgraph.setGeometry(720,610,180,80)
+        self.exportgraph.setFont(QFont('Arial', 18))
         self.exportgraph.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
 "border-radius: 15px;\n"
 "border-color: black;\n"
 "padding: 4px; color: black")
+        self.exportgraph.clicked.connect(self.call_first1)
         #self.exportgraph.clicked.connect(self.call_first1)
         self.graphWidget = pg.PlotWidget(self)
         self.graphWidget.setGeometry(550,170,420, 390)
         self.graphWidget.setBackground('w')
         self.graphWidget.showGrid(x=False,y=True)
-        self.graphWidget.setLabel('left', 'Temperature')
+        self.graphWidget.setLabel('left', str("Temperature"))
         self.graphWidget.setLabel('bottom', 'Time')
         self.graphWidget.setWindowTitle('Temperature Graph')
         self.axis = DateAxisItem(orientation='bottom')
@@ -5244,26 +5210,27 @@ class graphresultwindow(QMdiSubWindow):
         #self.xax.setTicks(ticks)
         pen = pg.mkPen(color=(255, 0, 0))
         self.data_line =  self.graphWidget.plot(self.df_faisal['Time'], self.df_faisal['Temperature'], pen=pen)
-        self.temperature = QLabel("Temperature",self)
-        self.temperature.setFont(QFont('Arial', 19))
-        self.temperature.setStyleSheet('background-color:white; color: black;')
-        self.temperature.setGeometry(100,175,140,75)
 
-        self.timer = QLabel("Timer",self)
-        self.timer.setFont(QFont('Arial', 19))
+        self.temperature = QLabel("consigne de Température",self)
+        self.temperature.setFont(QFont('Arial', 16))
+        self.temperature.setStyleSheet('background-color:white; color: black;')
+        self.temperature.setGeometry(80,175,180,75)
+
+        self.timer = QLabel("Régler la minuterie",self)
+        self.timer.setFont(QFont('Arial', 16))
         self.timer.setStyleSheet('background-color:white; color: black;')
-        self.timer.setGeometry(100,290,140,75)
+        self.timer.setGeometry(80,290,180,75)
 
                 
-        self.username = QLabel("User Name",self)
-        self.username.setFont(QFont('Arial', 19))
+        self.username = QLabel("Définir l'utilisateur",self)
+        self.username.setFont(QFont('Arial', 16))
         self.username.setStyleSheet('background-color:white; color: black;')
-        self.username.setGeometry(100,395,140,75)
+        self.username.setGeometry(80,395,180,75)
         
-        self.status = QLabel("Status",self)
-        self.status.setFont(QFont('Arial', 19))
+        self.status = QLabel("Statut",self)
+        self.status.setFont(QFont('Arial', 16))
         self.status.setStyleSheet('background-color:white; color: black;')
-        self.status.setGeometry(100,505,100,75)
+        self.status.setGeometry(80,505,180,75)
         
         self.temperature = QLabel(self)
         self.temperature.setFont(QFont('Arial', 19))
@@ -5327,17 +5294,7 @@ class runninggraphwindow(QMdiSubWindow):
                 return 55
 
     def update_plot_data(self):
-        #time = QTime.currentTime().toString()
-            # currentDT = datetime.now()
-            # date_test=currentDT.strftime("%d-%m-%Y")
-            # time_test=currentDT.strftime("%H:%M:%S")
-            # key_1=currentDT.strftime("%Y%m%d%H%M%S")
-            # #print(self.user_name.strip(),self.user_employerid.strip(),self.user_contact.strip(),self.user_designation.strip(),key_1)
-            # conn = sqlite3.connect('faisal.db')
-            # c = conn.cursor()
-            # #c.execute(f"DELETE from Userdata where ActionKey={keydata.editdata}") 
-            # c.execute("INSERT INTO result(Date,Time,Temperature,Timer,Username,FanSpeed,Level,Status,Key) VALUES(?,?,?,?,?,?,?,?,?)",(date_test,time_test,starttestdata.temperature,timer_data,starttestdata.username,starttestdata.fanspeed,starttestdata.level,status,key_1))
-            # conn.commit()
+
         now = time.time()
         #print(type(now))
         #timestamps = numpy.linspace(now - 3600, now, 100)
@@ -5346,19 +5303,7 @@ class runninggraphwindow(QMdiSubWindow):
         store.time_list.append(now)
         if(len(self.time)>5000):
           self.time=self.time[1:]
-        #
-        #self.time1.append(self.i)
-        #self.ticks = [list(zip(range(self.i), self.time))]
-        #self.i=self.i+1
 
-        #self.xax.setTicks(self.ticks)
-        
-        #self.x = self.x[1:]  # Remove the first y element.
-        #time = QTime.currentTime().toString()
-        #self.time.append('time')  # Add a new value 1 higher than the last.
-
-
-        #self.y = self.y[1:]  # Remove the first
 
         x_t=self.temp_call() 
         #print(type(x_t))
@@ -5368,14 +5313,14 @@ class runninggraphwindow(QMdiSubWindow):
         if(len(self.temperature)>5000):
           self.temperature=self.temperature[1:]
         
-        mainwindow1.toptext="Current Temperature:"+"  "+str(x_t)  # Add a new random value.
+        mainwindow1.toptext=str("Current Temperature")+"  "+str(x_t)  # Add a new random value.
         #mainwindow1.lowertext="Timer :"+"  "+str(self.time_show)
         #self.xdict=dict(enumerate(self.time))
 
         self.data_line .setData(self.time, self.temperature)
         self.gauge.update_value(x_t)  # Update the data.
-        if (float(x_t)<float(starttestdata.temperature)):
-                self.dusra_variable=1
+        # if (float(x_t)<float(starttestdata.temperature)):
+        #         self.dusra_variable=1
         # if (float(x_t)<=float(starttestdata.temperature)-temperature_limit.limit and self.dusra_variable==1):
         #         if(self.c_b==2):
         #             self.buzzer_run1=self.buzzer_run1+1
@@ -5423,14 +5368,14 @@ class runninggraphwindow(QMdiSubWindow):
             self.calc.start()
 
     def startUI(self):
-        if(starttestdata.hours=='infinity'):
-            self.time_show='infinity'
-            mainwindow1.lowertext="Timer :"+"  "+str("Infinity")
+        if(starttestdata.hours==str("infinity")):
+            self.time_show=str("infinity")
+            mainwindow1.lowertext=str("Timer")+"  "+str("infinity")
             self.inf=External3()
             self.inf.start()
         else:
             self.time_show=str(starttestdata.hours)+'Hrs'+str(starttestdata.minutes)+'Mins'
-            mainwindow1.lowertext="Timer :"+"  "+str(self.time_show)
+            mainwindow1.lowertext=str("Timer ")+"  "+str(self.time_show)
     def onCountChanged(self, value):
         #self.progress.setValue(value)
         if(value=="stop"):
@@ -5451,32 +5396,36 @@ class runninggraphwindow(QMdiSubWindow):
         self.label.setPixmap(QPixmap('graph_screen.png'))
         self.label.setGeometry(0,100,1024,668)
         
-        self.set_temp = QLabel("Set Temperature :",self)
-        self.set_temp.setFont(QFont('Arial', 17))
-        self.set_temp.setStyleSheet('background-color:white; color: black;')
-        self.set_temp.setGeometry(120,500,200,85)
+        self.set_temp = QLabel(str("Consigne de Température:"),self)
+        self.set_temp.setFont(QFont('Arial', 16))
+        self.set_temp.setStyleSheet('background-color:#03002E; color: white;')
+        self.set_temp.setGeometry(100,540,300,40)
         
         self.set_temp_data = QLabel(self)
         self.set_temp_data.setFont(QFont('Arial', 17))
-        self.set_temp_data.setStyleSheet('background-color:white; color: black;')
-        self.set_temp_data.setGeometry(300,500,100,85)
+        self.set_temp_data.setStyleSheet('background-color:#03002E; color: white;')
+        self.set_temp_data.setGeometry(400,540,120,40)
+        #self.set_temp_data.setAlignment(Qt.AlignRight)
         self.set_temp_data.setText(starttestdata.temperature)
 
-        self.set_timer = QLabel("Set Timer :",self)
+        self.set_timer = QLabel(str("Régler la minuterie:"),self)
         self.set_timer.setFont(QFont('Arial', 17))
-        self.set_timer.setStyleSheet('background-color:white; color: black;')
-        self.set_timer.setGeometry(650,500,130,85)
+        self.set_timer.setStyleSheet('background-color:#03002E; color: white;')
+        #self.set_timer.raise_()
+        #self.set_timer.setAlignment(Qt.AlignRight)
+        self.set_timer.setGeometry(520,540,300,40)
         
         self.set_timer_data = QLabel(self)
         self.set_timer_data.setFont(QFont('Arial', 17))
-        self.set_timer_data.setStyleSheet('background-color:white; color: black;')
-        self.set_timer_data.setGeometry(780,500,200,85)
+        self.set_timer_data.setStyleSheet('background-color:#03002E; color: white;')
+        self.set_timer_data.setGeometry(750,540,200,40)
+        #self.set_timer_data.setAlignment(Qt.AlignRight)
         self.set_timer_data.setText(self.time_show)
         #self.time_show
         self.label_warning = QLabel(self)
         self.label_warning.setFont(QFont('Arial', 82))
         self.label_warning.setStyleSheet('background-color:white; color: red;')
-        self.label_warning.setGeometry(480,610,200,85)
+        self.label_warning.setGeometry(780,610,200,85)
         #self.set_timer_data.setText(self.time_show)
         
         self.gauge=AnalogGaugeWidget(self)
@@ -5497,7 +5446,7 @@ class runninggraphwindow(QMdiSubWindow):
 ##        plt.addLegend()
 ##
 ##        # set properties
-        self.graphWidget.setLabel('left', 'Temperature')
+        self.graphWidget.setLabel('left', str("Temperature"))
         self.graphWidget.setLabel('bottom', 'Time')
 ##        plt.setXRange(0,10)
 ##        plt.setYRange(0,20)
@@ -5539,7 +5488,7 @@ class runninggraphwindow(QMdiSubWindow):
 
         # plot data: x, y values
         #self.graphWidget.plot(hour, temperature)
-        self.Home = QPushButton('Home', self)
+        self.Home = QPushButton(str("maison"), self)
         self.Home.setGeometry(120,600,250,90)
         self.Home.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -5549,7 +5498,7 @@ class runninggraphwindow(QMdiSubWindow):
 "padding: 4px; color: black")
         #self.buttonWindow12.move(100, 100)
         self.Home.clicked.connect(self.call_home)
-        self.stoptest = QPushButton('Stop Test', self)
+        self.stoptest = QPushButton(str("arrêter le test"), self)
         self.stoptest.setGeometry(650,600,250,90)
         self.stoptest.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -5565,10 +5514,10 @@ class runninggraphwindow(QMdiSubWindow):
             conn = sqlite3.connect('faisal.db')
             c = conn.cursor() 
 
-            if(starttestdata.hours=='infinity'):
+            if(starttestdata.hours==str("infinity")):
                 c.execute("UPDATE powerfailure set startmode=0 where key=1")
                 conn.commit()
-                timer_data='infinity'
+                timer_data=str("infinity")
                 key_1=starttestdata.key
                 Value={'Time':store.time_list , 'Temperature':store.temp_list}
                 df1=DataFrame(Value,columns=['Time','Temperature'])
@@ -5646,21 +5595,21 @@ class runninggraphwindow(QMdiSubWindow):
             self._gif.setMovie(movie)
             movie.setSpeed(500)
             movie.start()
-            label1 = QLabel('Error',a)
+            label1 = QLabel(str("Erreur"),a)
             label1.setFont(QFont('Arialbold', 22))
             label1.setStyleSheet('background-color:white;border:0px solid white')
             label1.move(236,130)
-            label2 = QLabel('Are you sure you want to stop this test !',a)
+            label2 = QLabel('êtes-vous sûr de vouloir arrêter le test',a)
             label2.setFont(QFont('Arial', 19))
             label2.setStyleSheet('background-color:white;border:0px solid white')
             label2.move(50,170)
-            yes_delete = QPushButton('Yes !', a)
+            yes_delete = QPushButton(str("Oui"), a)
             yes_delete .setGeometry(50,240,240,90)
             yes_delete .setFont(QFont('Arial', 21))
             yes_delete .setStyleSheet('background-color:#d00403; color: white')
             yes_delete .clicked.connect(self.call_stopfinal)
             yes_delete .clicked.connect(call_no)
-            no = QPushButton('No', a)
+            no = QPushButton(str("Non"), a)
             no.setGeometry(270,240,240,90)
             no.setFont(QFont('Arial', 21))
             no.setStyleSheet('background-color:#4299ff; color: white')
@@ -5690,7 +5639,7 @@ class startwindow(QMdiSubWindow):
             self.nk.show()
         elif(data=="hours"):
             user_data=self.lineEdit_2.text()
-            if(user_data=='infinity'):
+            if(user_data==str("infinity")):
                 user_data=''
                 starttestdata.hours=''
                 starttestdata.minutes=''
@@ -5704,7 +5653,7 @@ class startwindow(QMdiSubWindow):
             self.nk.show()
         elif(data=="minutes"):
             user_data=self.lineEdit_3.text()
-            if(user_data=='infinity'):
+            if(user_data==str("infinity")):
                 user_data=''
                 starttestdata.hours=''
                 starttestdata.minutes=''
@@ -5731,84 +5680,87 @@ class startwindow(QMdiSubWindow):
         self.setWindowModality(Qt.NonModal)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
         self.setEnabled(True)
         #self.resize(1024, 668)
         self.setGeometry(0,0,1024,768)
         font = QFont()
         font.setFamily("Arial Black")
         font.setBold(True)
-        font.setWeight(75)
+        font.setWeight(85)
         self.setFont(font)
         self.setMouseTracking(True)
         self.setAcceptDrops(False)
         self.setToolTip("")
         self.setAutoFillBackground(False)
-        self.setStyleSheet("background-color: rgb(247, 247, 255)")
+        #self.setStyleSheet("background-color: rgb(247, 247, 255)")
 
         self.TestScreen = QLabel(self)
-        self.TestScreen.setGeometry(QRect(410, 120, 151, 31))
+        self.TestScreen.setGeometry(QRect(400, 120, 401, 41))
         font = QFont()
-        font.setPointSize(20)
+        font.setPointSize(22)
         self.TestScreen.setFont(font)
         self.TestScreen.setAutoFillBackground(False)
         self.TestScreen.setStyleSheet("")
         self.TestScreen.setObjectName("TestScreen")
         self.graphicsView = QGraphicsView(self)
-        self.graphicsView.setGeometry(QRect(20, 250, 981, 81))
+        self.graphicsView.setGeometry(QRect(20, 300, 981, 81))
         self.graphicsView.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.graphicsView.setObjectName("graphicsView")
         self.lineEdit = extQLineEdit1(self)
-        self.lineEdit.setGeometry(QRect(710, 270, 211, 41))
+        self.lineEdit.setGeometry(QRect(710, 320, 211, 41))
         self.lineEdit.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit.setObjectName("lineEdit")
         self.lineEdit.setFont(QFont('Arial', 21))
-        self.lineEdit.setPlaceholderText('Temperature')
+        self.lineEdit.setPlaceholderText(str("Température de consigne"))
         self.lineEdit.speak.connect(partial(self.call_b,data='temperature'))
         self.graphicsView_2 = QGraphicsView(self)
-        self.graphicsView_2.setGeometry(QRect(20, 330, 981, 81))
+        self.graphicsView_2.setGeometry(QRect(20, 380, 981, 81))
         self.graphicsView_2.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.graphicsView_2.setObjectName("graphicsView_2")
         self.lineEdit_2 = extQLineEdit1(self)
-        self.lineEdit_2.setGeometry(QRect(710, 350, 101, 41))
+        self.lineEdit_2.setGeometry(QRect(710, 400, 101, 41))
         self.lineEdit_2.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.lineEdit_2.setFont(QFont('Arial', 21))
-        self.lineEdit_2.setPlaceholderText('Hrs')
+        self.lineEdit_2.setPlaceholderText(str("Hrs"))
         self.lineEdit_2.speak.connect(partial(self.call_b,data='hours'))
         self.graphicsView_3 = QGraphicsView(self)
-        self.graphicsView_3.setGeometry(QRect(20, 490, 981, 81))
+        self.graphicsView_3.setGeometry(QRect(20, 540, 981, 81))
         self.graphicsView_3.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.graphicsView_3.setObjectName("graphicsView_3")
         self.lineEdit_3 = extQLineEdit1(self)
-        self.lineEdit_3.setGeometry(QRect(820, 350, 101, 41))
+        self.lineEdit_3.setGeometry(QRect(820, 400, 101, 41))
         self.lineEdit_3.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.lineEdit_3.setFont(QFont('Arial', 21))
-        self.lineEdit_3.setPlaceholderText('Min')
+        self.lineEdit_3.setPlaceholderText(str("Mins"))
         self.lineEdit_3.speak.connect(partial(self.call_b,data='minutes'))
         self.lineEdit_6 = extQLineEdit1(self)
-        self.lineEdit_6.setGeometry(QRect(710, 590, 231, 41))
+        self.lineEdit_6.setGeometry(QRect(710, 640, 231, 41))
         self.lineEdit_6.setStyleSheet("background-color: rgb(241, 241, 241);")
         self.lineEdit_6.setObjectName("lineEdit_6")
         self.lineEdit_6.setFont(QFont('Arial', 21))
-        self.lineEdit_6.setPlaceholderText('Username')
+        self.lineEdit_6.setPlaceholderText(str("Définir l'utilisateur"))
         self.lineEdit_6.speak.connect(partial(self.call_b,data='username'))
         self.graphicsView_6 = QGraphicsView(self)
-        self.graphicsView_6.setGeometry(QRect(20, 410, 981, 81))
+        self.graphicsView_6.setGeometry(QRect(20, 460, 981, 81))
         self.graphicsView_6.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.graphicsView_6.setObjectName("graphicsView_6")
         self.graphicsView_7 = QGraphicsView(self)
-        self.graphicsView_7.setGeometry(QRect(20, 570, 981, 81))
+        self.graphicsView_7.setGeometry(QRect(20, 620, 981, 81))
         self.graphicsView_7.setStyleSheet("background-color: rgb(255, 255, 255);")
         self.graphicsView_7.setObjectName("graphicsView_7")
         self.TestScreen_2 = QLabel(self)
-        self.TestScreen_2.setGeometry(QRect(50, 280, 211, 31))
+        self.TestScreen_2.setGeometry(QRect(50, 330, 450, 31))
         font = QFont()
         font.setFamily("Arial")
-        font.setPointSize(16)
+        font.setPointSize(20)
         font.setBold(False)
         font.setItalic(False)
-        font.setWeight(9)
+        font.setWeight(100)
         self.TestScreen_2.setFont(font)
         self.TestScreen_2.setCursor(QCursor(Qt.UpArrowCursor))
         self.TestScreen_2.setAutoFillBackground(False)
@@ -5816,7 +5768,7 @@ class startwindow(QMdiSubWindow):
 "font: 75 16pt \"Arial\";")
         self.TestScreen_2.setObjectName("TestScreen_2")
         self.TestScreen_3 = QLabel(self)
-        self.TestScreen_3.setGeometry(QRect(50, 360, 141, 31))
+        self.TestScreen_3.setGeometry(QRect(50, 410, 450, 31))
         font = QFont()
         font.setFamily("Arial")
         font.setPointSize(16)
@@ -5829,7 +5781,7 @@ class startwindow(QMdiSubWindow):
 "font: 75 16pt \"Arial\";")
         self.TestScreen_3.setObjectName("TestScreen_3")
         self.TestScreen_4 = QLabel(self)
-        self.TestScreen_4.setGeometry(QRect(50, 440, 141, 31))
+        self.TestScreen_4.setGeometry(QRect(50, 490, 450, 31))
         font = QFont()
         font.setFamily("Arial")
         font.setPointSize(16)
@@ -5842,17 +5794,20 @@ class startwindow(QMdiSubWindow):
 "font: 75 16pt \"Arial\";")
         self.TestScreen_4.setObjectName("TestScreen_4")
         self.comboBox = QComboBox(self)
-        self.comboBox.setGeometry(QRect(710, 430, 231, 41))
+        self.comboBox.setMinimumWidth(212);
+        self.comboBox.setStyleSheet("QComboBox{font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);}")
+        self.comboBox.setGeometry(QRect(710, 480, 191, 41))
         self.comboBox.setCursor(QCursor(Qt.ArrowCursor))
         self.comboBox.setAcceptDrops(False)
-        self.comboBox.setStyleSheet("font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);")
+        #self.comboBox.setStyleSheet("font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);")
         self.comboBox.setEditable(False)
+        #self.comboBox.setLayoutDirection(Qt.RightToLeft);
         self.comboBox.setObjectName("comboBox")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.TestScreen_5 = QLabel(self)
-        self.TestScreen_5.setGeometry(QRect(50, 520, 171, 31))
+        self.TestScreen_5.setGeometry(QRect(50, 570, 450, 31))
         font = QFont()
         font.setFamily("Arial")
         font.setPointSize(16)
@@ -5865,7 +5820,7 @@ class startwindow(QMdiSubWindow):
 "font: 75 16pt \"Arial\";")
         self.TestScreen_5.setObjectName("TestScreen_5")
         self.TestScreen_6 = QLabel(self)
-        self.TestScreen_6.setGeometry(QRect(50, 600, 151, 31))
+        self.TestScreen_6.setGeometry(QRect(50, 650, 450, 31))
         font = QFont()
         font.setFamily("Arial")
         font.setPointSize(16)
@@ -5878,10 +5833,18 @@ class startwindow(QMdiSubWindow):
 "font: 75 16pt \"Arial\";")
         self.TestScreen_6.setObjectName("TestScreen_6")
         self.comboBox_2 = QComboBox(self)
-        self.comboBox_2.setGeometry(QRect(710, 510, 231, 41))
+        self.comboBox_2.setMinimumWidth(212);
+        #self.comboBox_2.setLayoutDirection(Qt.RightToLeft);
+        self.comboBox_2.setCursor(QCursor(Qt.ArrowCursor))
+        #self.comboBox_2.setLayoutDirection(Qt.RightToLeft);
+        #self.comboBox.setMinimumWidth(250);
+        self.comboBox_2.setAcceptDrops(False)
+        self.comboBox_2.setStyleSheet("QComboBox{font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);}")
+        #self.comboBox_2.setStyleSheet("QComboBox{font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);} QComboBox:drop-down {subcontrol-origin: padding;  subcontrol-position: top right;width: 40px;border: 0px ;}")
+        self.comboBox_2.setGeometry(QRect(710, 560, 201, 41))
         self.comboBox_2.setCursor(QCursor(Qt.ArrowCursor))
         self.comboBox_2.setAcceptDrops(False)
-        self.comboBox_2.setStyleSheet("font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);")
+        #self.comboBox_2.setStyleSheet("font: 87 15pt \"Arial\";background-color: rgb(241, 241, 241);")
         self.comboBox_2.setEditable(False)
         self.comboBox_2.setObjectName("comboBox_2")
         self.comboBox_2.addItem("")
@@ -5889,7 +5852,7 @@ class startwindow(QMdiSubWindow):
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.pushButton = QPushButton(self)
-        self.pushButton.setGeometry(QRect(660, 152, 291, 71))
+        self.pushButton.setGeometry(QRect(60, 202, 291, 71))
         self.pushButton.clicked.connect(self.call_starttest)
         self.pushButton.setStyleSheet("border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
@@ -5900,17 +5863,17 @@ class startwindow(QMdiSubWindow):
 "padding: 4px; color: black")
         self.pushButton.setObjectName("pushButton")
         self.pushButton_2 = QPushButton(self)
-        self.pushButton_2.setGeometry(QRect(720, 670, 241, 61))
+        self.pushButton_2.setGeometry(QRect(700, 202, 241, 61))
         
         #self.pushButton_2.clicked.connect(qApp.quit)
         #self.pushButton_2.clicked.connect(QCoreApplication.instance().quit)
         self.pushButton_2.clicked.connect(self.call_first1)
-        self.pushButton_2.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
+        self.pushButton_2.setStyleSheet("background-color:#C9282F;border: none;border-style: outset;\n"
 "font: 14pt \"Arial\";\n"
 "border-width: 1px;\n"
 "border-radius: 15px;\n"
-"border-color: black;\n"
-"padding: 4px; color: black")
+"border-color: #C9282F;\n"
+"padding: 4px; color:black ")
         self.pushButton_2.setObjectName("pushButton_2")
         self.graphicsView_7.raise_()
         self.graphicsView_6.raise_()
@@ -5936,29 +5899,29 @@ class startwindow(QMdiSubWindow):
         self.label = QLabel(uni,self)
         self.label.setFont(QFont('Arial', 38))
         self.label.setStyleSheet('background-color:white;color: black;')
-        self.label.setGeometry(924,340,57,45)
+        self.label.setGeometry(940,390,57,45)
         self.retranslateUi()
         self.inserteditdata()
         #QMetaObject.connectSlotsByName(self)
 
     def retranslateUi(self):
        # _translate = QCoreApplication.translate
-        self.setWindowTitle( "Start Test")
-        self.TestScreen.setText("Test Screen")
-        self.TestScreen_2.setText("SET TEMPERATURE")
-        self.TestScreen_3.setText( "SET TIMER")
-        self.TestScreen_4.setText( "SET LEVEL")
-        self.comboBox.setItemText(0,  "FAST")
-        self.comboBox.setItemText(1, "MEDIUM")
-        self.comboBox.setItemText(2, "SLOW")
-        self.TestScreen_5.setText("SET FAN SPEED")
-        self.TestScreen_6.setText("SELECT USER")
+        self.setWindowTitle( str("Définir les paramètres"))
+        self.TestScreen.setText(str("Définir les paramètres"))
+        self.TestScreen_2.setText(str("Température de consigne"))
+        self.TestScreen_3.setText( str("Régler la minuterie/le mode infini"))
+        self.TestScreen_4.setText( str("Niveau "))
+        self.comboBox.setItemText(0,  str("Vite"))
+        self.comboBox.setItemText(1, "moyen")
+        self.comboBox.setItemText(2, "lent")
+        self.TestScreen_5.setText(str("Vitesse du ventilateur"))
+        self.TestScreen_6.setText(str("Définir l'utilisateur"))
         self.comboBox_2.setItemText(0, "100%")
         self.comboBox_2.setItemText(1,"50%")
         self.comboBox_2.setItemText(2,"25%")
         self.comboBox_2.setItemText(3, "off")
-        self.pushButton.setText("START TEST")
-        self.pushButton_2.setText("BACK")
+        self.pushButton.setText(str("Commencer à faire un test"))
+        self.pushButton_2.setText(str("\u2190               Retour               "))
     
     def inserteditdata(self):
             self.lineEdit.setText(starttestdata.temperature)
@@ -5995,7 +5958,7 @@ class startwindow(QMdiSubWindow):
                 starttestdata.fanspeed=self.comboBox_2.currentText()
                 starttestdata.username=self.lineEdit_6.text() 
                 
-                timer_data='infinity'
+                timer_data="infinity"
                 status='halted'
                 currentDT = datetime.now()
                 date_test=currentDT.strftime("%d-%m-%Y")
@@ -6027,7 +5990,7 @@ class startwindow(QMdiSubWindow):
                 windoww.win.addSubWindow(self.rg)
                 self.rg.show()
         except ValueError:
-            self.popup1=popup1(name='           Please enter all values !',name2='Close')
+            self.popup1=popup1(name='\u0645\u0646 \u0641\u0636\u0644\u0643 \u0623\u062f\u062e\u0644 \u0643\u0644 \u0627\u0644\u0642\u064a\u0645 ',name2='Close')
             self.popup1.show()
 
 
@@ -6074,7 +6037,8 @@ class contactkeyboard(QMdiSubWindow):
         #self.setStyleSheet('background-color:#f7f7ff;')
         self.bg = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('123.png'))
+        #self.bg.setPixmap(QPixmap('123.png'))
+        self.bg.setStyleSheet("background-color:#f8f8f8")
         self.bg.setGeometry(0,100,1024,668)
         self.label = QLabel(self.labelshow,self)
         self.label.setFont(QFont('Arial', 17))
@@ -6400,7 +6364,8 @@ class numerickeyboard(QMdiSubWindow):
         #self.setStyleSheet('background-color:#f7f7ff;')
         self.bg = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('123.png'))
+        #self.bg.setPixmap(QPixmap('123.png'))
+        self.bg.setStyleSheet("background-color:#f8f8f8")
         self.bg.setGeometry(0,100,1024,668)
         self.label = QLabel(self.labelshow,self)
         self.label.setFont(QFont('Arial', 15))
@@ -6729,7 +6694,956 @@ padding: 4px; color: black''')
         self.capital_keyboard1=keyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
         windoww.win.addSubWindow(self.capital_keyboard1)
         self.capital_keyboard1.show()
-    
+class arabickeyboard(QMdiSubWindow):
+    def __init__(self,mainwindowshow,previouswindow,entry_1):
+        super().__init__()
+        self.title = "App"
+        self.top = 0
+        self.left = 100
+        self.width = 1024
+        self.height = 768
+        self.temp_user=''
+        self.entry_1=entry_1
+        self.mainwindowshow=mainwindowshow
+        self.previouswindow=previouswindow
+        self.startUI()
+        self.InitUI()
+    def startUI(self):
+
+        if(self.previouswindow=='e_user' or self.previouswindow=='a_user' ):
+            self.labelshow="\u0623\u062f\u062e\u0644 \u0627\u0633\u0645 \u0627\u0644\u0645\u0633\u062a\u062e\u062f\u0645"
+            self.length=14
+        elif(self.previouswindow=='e_employer' or self.previouswindow=='a_employer' ):
+            self.labelshow="\u0623\u062f\u062e\u0644 \u0628\u0637\u0627\u0642\u0629 \u0647\u0648\u064a\u0629 \u0627\u0644\u0645\u0648\u0638\u0641 "
+            self.length=14
+        elif(self.previouswindow=='e_designation' or self.previouswindow=='a_designation' ):
+            self.labelshow="\u0623\u062f\u062e\u0644 \u0627\u0644\u062a\u0639\u064a\u064a\u0646"
+            self.length=14
+        elif(self.previouswindow=='e_contact' or self.previouswindow=='a_contact' ):
+            self.labelshow="Enter Contact"
+            self.length=14
+        elif(self.previouswindow=='c_name'):
+            self.labelshow="\u0623\u062f\u062e\u0644 \u0627\u0633\u0645 \u0627\u0644\u0634\u0631\u0643\u0629"
+            self.length=14
+        elif(self.previouswindow=='pass'):
+            self.labelshow="\u0623\u062f\u062e\u0644 \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631"
+            self.length=14
+        elif(self.previouswindow=="newservicepassword"):
+            self.labelshow="\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629"
+            self.length=14
+        elif(self.previouswindow=="confirmservicepassword"):
+            self.labelshow="\u0623\u0643\u062f \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631"
+            self.length=14
+        elif(self.previouswindow=="currentservicepassword1"):
+            self.labelshow="\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0627\u0644\u062d\u0627\u0644\u064a\u0629"
+            self.length=14
+        elif(self.previouswindow=="newservicepassword1"):
+            self.labelshow="\u0643\u0644\u0645\u0629 \u0645\u0631\u0648\u0631 \u0627\u0644\u062c\u062f\u064a\u062f\u0629"
+            self.length=14
+        elif(self.previouswindow=="confirmservicepassword1"):
+            self.labelshow="\u0623\u0643\u062f \u0643\u0644\u0645\u0629 \u0627\u0644\u0645\u0631\u0648\u0631"
+            self.length=14
+        elif(self.previouswindow=="result"):
+            self.labelshow=str("\u0623\u062f\u062e\u0644 \u0627\u0644\u0643\u0644\u0645\u0629 \u0627\u0644\u0631\u0626\u064a\u0633\u064a\u0629")
+            self.length=14
+            
+
+
+
+    def InitUI(self):
+        self.setWindowTitle(self.title)
+        self.setWindowModality(Qt.ApplicationModal)
+        self.setAttribute(Qt.WA_DeleteOnClose) 
+        self.setGeometry(self.top, self.left, self.width, self.height)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
+        self.bg = QLabel(self)
+        #self.pixmap = QPixmap('header.png')
+        #self.bg.setPixmap(QPixmap('123.png'))
+        self.bg.setStyleSheet("background-color:#f8f8f8")
+        self.bg.setGeometry(0,100,1024,668)
+
+        self.label = QLabel(self.labelshow,self)
+        self.label.setFont(QFont('Arial', 15))
+        self.label.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 1px;')
+        self.label.setGeometry(770,116,200,85)
+
+        self.entry = QLineEdit(self)
+        self.entry.setFont(QFont('Arial', 21))
+        self.entry.setGeometry(20,116,750,85)
+        self.entry.setStyleSheet('background-color:white; color: black;border-style:solid;border-width: 2px;')
+        self.entry.setPlaceholderText(self.labelshow)
+        self.entry.setMaxLength(self.length)
+        self.entry.setAlignment(Qt.AlignLeft)
+        self.entry.setReadOnly(True)
+        self.entry.setText(self.entry_1)
+        #self.entry.setEnabled(False);
+        #self.entry.setTextInteractionFlags(Qt.TextSelectableByMouse | Qt.TextSelectableByKeyboard)
+        #self.entry.setFocus()
+        q = QPushButton("\u0636", self)
+        q.setGeometry(59,249,82,100)
+        q.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(q)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        q.setGraphicsEffect(effect)
+        q.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        q.clicked.connect(partial(self.insert_text,data='q'))
+        #q.clicked.connect(lambda: self.insert_text(data='q'))
+        self.w = QPushButton("\u0635", self)
+        self.w.setGeometry(141,249,82,100)
+        self.w.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.w)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.w.setGraphicsEffect(effect)
+        self.w.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.w.clicked.connect(self.insert_text)
+        self.e = QPushButton("\u062B", self)
+        self.e.setGeometry(223,249,82,100)
+        self.e.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.e)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.e.setGraphicsEffect(effect)
+        self.e.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.e.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.r = QPushButton("\u0642", self)
+        self.r.setGeometry(305,249,82,100)
+        self.r.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.r)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.r.setGraphicsEffect(effect)
+        self.r.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.r.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.t = QPushButton('\u0641', self)
+        self.t.setGeometry(387,249,82,100)
+        self.t.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.t)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.t.setGraphicsEffect(effect)
+        self.t.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.t.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.y = QPushButton('\u063A', self)
+        self.y.setGeometry(469,249,82,100)
+        self.y.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.y)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.y.setGraphicsEffect(effect)
+        self.y.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.y.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.u = QPushButton('\u0639', self)
+        self.u.setGeometry(551,249,82,100)
+        self.u.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.u)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.u.setGraphicsEffect(effect)
+        self.u.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.u.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.i = QPushButton('\uFEE9', self)
+        self.i.setGeometry(633,249,82,100)
+        self.i.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.i)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.i.setGraphicsEffect(effect)
+        self.i.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.i.clicked.connect(self.insert_text)
+        self.o = QPushButton(str("\u062E"), self)
+        self.o.setGeometry(715,249,82,100)
+        self.o.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.o)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.o.setGraphicsEffect(effect)
+        self.o.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.o.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.p = QPushButton(str("\u062D"), self)
+        self.p.setGeometry(797,249,82,100)
+        self.p.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p.setGraphicsEffect(effect)
+        self.p.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.p.clicked.connect(self.insert_text)
+
+        self.p1 = QPushButton(str("\u062C"), self)
+        self.p1.setGeometry(879,249,82,100)
+        self.p1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p1.setGraphicsEffect(effect)
+        self.p1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.p1.clicked.connect(self.insert_text)
+        
+        self.a = QPushButton("\u0634", self)
+        self.a.setGeometry(59,350,82,100)
+        self.a.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.a)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.a.setGraphicsEffect(effect)
+        self.a.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.a.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.s = QPushButton("\u0633", self)
+        self.s.setGeometry(141,350,82,100)
+        self.s.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.s)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.s.setGraphicsEffect(effect)
+        self.s.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.s.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.d = QPushButton("\u064A", self)
+        self.d.setGeometry(223,350,82,100)
+        self.d.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.d)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.d.setGraphicsEffect(effect)
+        self.d.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.d.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.f = QPushButton("\u0628", self)
+        self.f.setGeometry(305,350,82,100)
+        self.f.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.f)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.f.setGraphicsEffect(effect)
+        self.f.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.f.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.g = QPushButton(("\u0644"), self)
+        self.g.setGeometry(387,350,82,100)
+        self.g.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.g)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.g.setGraphicsEffect(effect)
+        self.g.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.g.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.h = QPushButton('\u0627', self)
+        self.h.setGeometry(469,350,82,100)
+        self.h.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.h)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.h.setGraphicsEffect(effect)
+        self.h.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.h.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.j = QPushButton("\u062A", self)
+        self.j.setGeometry(551,350,82,100)
+        self.j.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.j)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.j.setGraphicsEffect(effect)
+        self.j.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.j.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.k = QPushButton('\u0646', self)
+        self.k.setGeometry(633,350,82,100)
+        self.k.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.k)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.k.setGraphicsEffect(effect)
+        self.k.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.k.clicked.connect(self.insert_text)
+        self.l = QPushButton("\u0645", self)
+        self.l.setGeometry(715,350,82,100)
+        self.l.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.l)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.l.setGraphicsEffect(effect)
+        self.l.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.l.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.col = QPushButton("\u0643", self)
+        self.col.setGeometry(797,350,82,100)
+        self.col.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col.setGraphicsEffect(effect)
+        self.col.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.col.clicked.connect(self.insert_text)
+
+        self.col1 = QPushButton("\u0637", self)
+        self.col1.setGeometry(879,350,82,100)
+        self.col1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col1.setGraphicsEffect(effect)
+        self.col1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.col1.clicked.connect(self.insert_text)
+
+        qq=u'\u21E7'
+
+        self.shift = QPushButton("\u0632", self)
+        self.shift.setGeometry(58,451,82,100)
+        self.shift.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
+        self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.shift.clicked.connect(self.insert_text)
+        
+        #self.a.clicked.connect(self.call_delete1)
+        self.z = QPushButton('\u0621', self)
+        self.z.setGeometry(140,451,82,100)
+        self.z.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
+        self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.z.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.x = QPushButton('\u0624', self)
+        self.x.setGeometry(222,451,82,100)
+        self.x.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
+        self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.x.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.c = QPushButton('\u0631', self)
+        self.c.setGeometry(304,451,82,100)
+        self.c.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
+        self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.c.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.v = QPushButton('\u0649', self)
+        self.v.setGeometry(386,451,82,100)
+        self.v.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
+        self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.v.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.b = QPushButton('\u0629', self)
+        self.b.setGeometry(468,451,82,100)
+        self.b.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
+        self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.b.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.n = QPushButton('\u0648', self)
+        self.n.setGeometry(550,451,82,100)
+        self.n.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
+        self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.n.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.m = QPushButton('\u0632', self)
+        self.m.setGeometry(632,451,82,100)
+        self.m.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
+        self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.m.clicked.connect(self.insert_text)
+        self.po = QPushButton('\u0638', self)
+        self.po.setGeometry(714,451,82,100)
+        self.po.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
+        self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.po.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        
+        self.clear = QPushButton('\u062F', self)
+        self.clear.setGeometry(796,451,82,100)
+        self.clear.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
+        self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear.clicked.connect(self.insert_text)
+        clr=u'\u232b'
+        self.clear2 = QPushButton(clr, self)
+        self.clear2.setGeometry(878,451,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.clear1)
+
+##
+        self.shift = QPushButton("\u064e", self)
+        self.shift.setGeometry(58,552,82,100)
+        self.shift.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
+        self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.shift.clicked.connect(self.insert_text)
+        
+        #self.a.clicked.connect(self.call_delete1)
+        self.z = QPushButton('\u0650', self)
+        self.z.setGeometry(140,552,82,100)
+        self.z.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
+        self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.z.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.x = QPushButton('\u064F', self)
+        self.x.setGeometry(222,552,82,100)
+        self.x.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
+        self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.x.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.c = QPushButton('\u064B', self)
+        self.c.setGeometry(304,552,82,100)
+        self.c.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
+        self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.c.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.v = QPushButton('\u064c', self)
+        self.v.setGeometry(386,552,82,100)
+        self.v.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
+        self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.v.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.b = QPushButton('\u0670', self)
+        self.b.setGeometry(468,552,82,100)
+        self.b.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
+        self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.b.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.n = QPushButton('\u0656', self)
+        self.n.setGeometry(550,552,82,100)
+        self.n.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
+        self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.n.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.m = QPushButton('\u0652', self)
+        self.m.setGeometry(632,552,82,100)
+        self.m.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
+        self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.po = QPushButton('\u0653', self)
+        self.po.setGeometry(714,552,82,100)
+        self.po.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
+        self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.po.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        clr=u'\u232b'
+        self.clear = QPushButton('\u0651', self)
+        self.clear.setGeometry(796,552,82,100)
+        self.clear.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
+        self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear.clicked.connect(self.insert_text)
+
+        self.clear2 = QPushButton(":", self)
+        self.clear2.setGeometry(878,552,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.insert_text)
+##
+        self.change = QPushButton('123', self)
+        self.change.setGeometry(58,653,100,100)
+        self.change.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.change)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.change.setGraphicsEffect(effect)
+        self.change.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.change.clicked.connect(self.change_numeric)
+        
+        self.dash = QPushButton('-', self)
+        self.dash.setGeometry(158,653,100,100)
+        self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
+        self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.dash.clicked.connect(self.insert_text)
+
+        self.dash = QPushButton('ENG', self)
+        self.dash.setGeometry(258,653,100,100)
+        self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
+        self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.dash.clicked.connect(self.arbitoenglish)        
+        self.space = QPushButton('space', self)
+        self.space.setGeometry(358,653,340,100)
+        self.space.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.space)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.space.setGraphicsEffect(effect)
+        self.space.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.space.clicked.connect(self.space1)
+        
+        self.enter = QPushButton('enter', self)
+        self.enter.setGeometry(698,653,260,100)
+        self.enter.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.enter)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.enter.setGraphicsEffect(effect)
+        self.enter.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.enter.clicked.connect(self.enter1)
+    def insert_text(self,data):
+            sender = self.sender()
+##            print(sender.text())
+##            cursor = self.entry.cursorPosition()
+            self.entry.setText(self.entry.text() + str(sender.text()))
+            self.entry.setFocus()
+##            print('cursor',cursor)
+##            self.entry.cursorWordForward(True)
+##            self.entry.setCursorPosition(2)
+            #self.entry.setText(str(data))
+    def arbitoenglish(self):
+        self.close()
+        #self.destroy()
+        #gc.collect()        
+
+        self.capital_keyboard1=keyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
+        windoww.win.addSubWindow(self.capital_keyboard1)
+        self.capital_keyboard1.show()        
+    def clear1(self):
+        #self.entry.text=self.entry.text()[0:-2]
+        print(self.entry.text()[0:-1])
+        l=self.entry.text()[0:-1]
+        self.entry.setText(l)
+    def space1(self):
+        self.entry.setText(self.entry.text() + ' ')
+    def enter1(self):
+        if(self.previouswindow=='e_user' ):
+            keydata.username = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=edituser(self.mainwindowshow,editdata='')
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='e_employer'):
+            keydata.employerid = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=edituser(self.mainwindowshow,editdata='')
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='e_contact'):
+            keydata.contact = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=edituser(self.mainwindowshow,editdata='')
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='e_designation'):
+            keydata.designation = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=edituser(self.mainwindowshow,editdata='')
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='a_user' ):
+            adduserdata.username = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=adduser(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='a_employer'):
+            adduserdata.employerid = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=adduser(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='a_contact'):
+            adduserdata.contact = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=adduser(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='a_designation'):
+            adduserdata.designation = self.entry.text()
+            #print(y.username,'ee')
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=adduser(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='c_name'):
+            ins_screen.companyname=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=instrumentwindow(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+            #"faisal"="Enter Company\nName"
+            #self.length=14
+        elif(self.previouswindow=='pass'):
+            password_screen.password=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=servicepasswordwindow(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='newservicepassword'):
+            masterpassword_screen.newservicepassword=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=masterpasswordscreen(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=='confirmservicepassword'):
+            masterpassword_screen.confirmservicepassword=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=masterpasswordscreen(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=="currentservicepassword1"):
+            servicepassword_screen.currentservicepassword=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=servicepasswordscreen(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=="newservicepassword1"):
+            servicepassword_screen.newservicepassword=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=servicepasswordscreen(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=="confirmservicepassword1"):
+            servicepassword_screen.confirmservicepassword=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=servicepasswordscreen(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+        elif(self.previouswindow=="result"):
+            result_screen.result=self.entry.text()
+            self.close()
+            #self.destroy()
+            #gc.collect()
+            self.edituser1=result_window(self.mainwindowshow)
+            windoww.win.addSubWindow(self.edituser1)
+            self.edituser1.show()
+
+    def shift1(self):
+        self.close()
+        #self.destroy()
+        #gc.collect()
+
+        self.capital_keyboard1=capital_keyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
+        windoww.win.addSubWindow(self.capital_keyboard1)
+        self.capital_keyboard1.show()
+    def change_numeric(self):
+        self.close()
+        #self.destroy()
+        #gc.collect()
+        self.numerickeyboard1=numerickeyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
+        windoww.win.addSubWindow(self.numerickeyboard1)
+        self.numerickeyboard1.show()    
 class keyboard(QMdiSubWindow):
     def __init__(self,mainwindowshow,previouswindow,entry_1):
         super().__init__()
@@ -6794,7 +7708,8 @@ class keyboard(QMdiSubWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.bg = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('123.png'))
+        #self.bg.setPixmap(QPixmap('123.png'))
+        self.bg.setStyleSheet("background-color:#f8f8f8")
         self.bg.setGeometry(0,100,1024,668)
 
         self.label = QLabel(self.labelshow,self)
@@ -6814,343 +7729,702 @@ class keyboard(QMdiSubWindow):
         #self.entry.setEnabled(False);
         #self.entry.setTextInteractionFlags(Qt.TextSelectableByMouse | Qt.TextSelectableByKeyboard)
         #self.entry.setFocus()
-        q = QPushButton('q', self)
+        q = QPushButton("q", self)
         q.setGeometry(59,249,82,100)
         q.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(q)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        q.setGraphicsEffect(effect)
         q.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         q.clicked.connect(partial(self.insert_text,data='q'))
         #q.clicked.connect(lambda: self.insert_text(data='q'))
-        self.w = QPushButton('w', self)
-        self.w.setGeometry(149,249,82,100)
+        self.w = QPushButton("w", self)
+        self.w.setGeometry(141,249,82,100)
         self.w.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.w)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.w.setGraphicsEffect(effect)
         self.w.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.w.clicked.connect(self.insert_text)
-        self.e = QPushButton('e', self)
-        self.e.setGeometry(240,249,82,100)
+        self.e = QPushButton("e", self)
+        self.e.setGeometry(223,249,82,100)
         self.e.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.e)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.e.setGraphicsEffect(effect)
         self.e.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.e.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.r = QPushButton('r', self)
-        self.r.setGeometry(331,249,82,100)
+        self.r = QPushButton("r", self)
+        self.r.setGeometry(305,249,82,100)
         self.r.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.r)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.r.setGraphicsEffect(effect)
         self.r.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.r.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.t = QPushButton('t', self)
-        self.t.setGeometry(422,249,82,100)
+        self.t.setGeometry(387,249,82,100)
         self.t.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.t)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.t.setGraphicsEffect(effect)
         self.t.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.t.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.y = QPushButton('y', self)
-        self.y.setGeometry(513,249,82,100)
+        self.y.setGeometry(469,249,82,100)
         self.y.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.y)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.y.setGraphicsEffect(effect)
         self.y.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.y.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.u = QPushButton('u', self)
-        self.u.setGeometry(604,249,82,100)
+        self.u.setGeometry(551,249,82,100)
         self.u.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.u)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.u.setGraphicsEffect(effect)
         self.u.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.u.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.i = QPushButton('i', self)
-        self.i.setGeometry(695,249,82,100)
+        self.i.setGeometry(633,249,82,100)
         self.i.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.i)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.i.setGraphicsEffect(effect)
         self.i.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.i.clicked.connect(self.insert_text)
-        self.o = QPushButton('o', self)
-        self.o.setGeometry(786,249,82,100)
+        self.o = QPushButton(str("o"), self)
+        self.o.setGeometry(715,249,82,100)
         self.o.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.o)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.o.setGraphicsEffect(effect)
         self.o.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.o.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.p = QPushButton('p', self)
-        self.p.setGeometry(877,249,82,100)
+        self.p = QPushButton(str("p"), self)
+        self.p.setGeometry(797,249,82,100)
         self.p.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p.setGraphicsEffect(effect)
         self.p.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.p.clicked.connect(self.insert_text)
+
+        self.p1 = QPushButton(str("|"), self)
+        self.p1.setGeometry(879,249,82,100)
+        self.p1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p1.setGraphicsEffect(effect)
+        self.p1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.p1.clicked.connect(self.insert_text)
         
-        self.a = QPushButton('a', self)
-        self.a.setGeometry(59,380,82,100)
+        self.a = QPushButton("a", self)
+        self.a.setGeometry(59,350,82,100)
         self.a.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.a)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.a.setGraphicsEffect(effect)
         self.a.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.a.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.s = QPushButton('s', self)
-        self.s.setGeometry(149,380,82,100)
+        self.s = QPushButton("s", self)
+        self.s.setGeometry(141,350,82,100)
         self.s.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.s)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.s.setGraphicsEffect(effect)
         self.s.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.s.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.d = QPushButton('d', self)
-        self.d.setGeometry(240,380,82,100)
+        self.d = QPushButton("d", self)
+        self.d.setGeometry(223,350,82,100)
         self.d.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.d)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.d.setGraphicsEffect(effect)
         self.d.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.d.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.f = QPushButton('f', self)
-        self.f.setGeometry(331,380,82,100)
+        self.f = QPushButton("f", self)
+        self.f.setGeometry(305,350,82,100)
         self.f.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.f)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.f.setGraphicsEffect(effect)
         self.f.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.f.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.g = QPushButton('g', self)
-        self.g.setGeometry(422,380,82,100)
+        self.g = QPushButton(("g"), self)
+        self.g.setGeometry(387,350,82,100)
         self.g.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.g)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.g.setGraphicsEffect(effect)
         self.g.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.g.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.h = QPushButton('h', self)
-        self.h.setGeometry(513,380,82,100)
+        self.h.setGeometry(469,350,82,100)
         self.h.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.h)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.h.setGraphicsEffect(effect)
         self.h.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.h.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.j = QPushButton('j', self)
-        self.j.setGeometry(604,380,82,100)
+        self.j = QPushButton("j", self)
+        self.j.setGeometry(551,350,82,100)
         self.j.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.j)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.j.setGraphicsEffect(effect)
         self.j.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.j.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.k = QPushButton('k', self)
-        self.k.setGeometry(695,380,82,100)
+        self.k.setGeometry(633,350,82,100)
         self.k.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.k)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.k.setGraphicsEffect(effect)
         self.k.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.k.clicked.connect(self.insert_text)
-        self.l = QPushButton('l', self)
-        self.l.setGeometry(786,380,82,100)
+        self.l = QPushButton("l", self)
+        self.l.setGeometry(715,350,82,100)
         self.l.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.l)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.l.setGraphicsEffect(effect)
         self.l.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.l.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.col = QPushButton(':', self)
-        self.col.setGeometry(877,380,82,100)
+        self.col = QPushButton(":", self)
+        self.col.setGeometry(797,350,82,100)
         self.col.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col.setGraphicsEffect(effect)
         self.col.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.col.clicked.connect(self.insert_text)
+
+        self.col1 = QPushButton("'", self)
+        self.col1.setGeometry(879,350,82,100)
+        self.col1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col1.setGraphicsEffect(effect)
+        self.col1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.col1.clicked.connect(self.insert_text)
+
         qq=u'\u21E7'
 
         self.shift = QPushButton(qq, self)
-        self.shift.setGeometry(58,514,83,100)
-        self.shift.setFont(QFont('Arial', 40))
+        self.shift.setGeometry(58,451,82,100)
+        self.shift.setFont(QFont('Arial', 38))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
         self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.shift.clicked.connect(self.shift1)
         
         #self.a.clicked.connect(self.call_delete1)
         self.z = QPushButton('z', self)
-        self.z.setGeometry(149,513,82,100)
+        self.z.setGeometry(140,451,82,100)
         self.z.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
         self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.z.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.x = QPushButton('x', self)
-        self.x.setGeometry(240,513,82,100)
+        self.x.setGeometry(222,451,82,100)
         self.x.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
         self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.x.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.c = QPushButton('c', self)
-        self.c.setGeometry(331,513,82,100)
+        self.c.setGeometry(304,451,82,100)
         self.c.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
         self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.c.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.v = QPushButton('v', self)
-        self.v.setGeometry(422,513,82,100)
+        self.v.setGeometry(386,451,82,100)
         self.v.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
         self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.v.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.b = QPushButton('b', self)
-        self.b.setGeometry(513,513,82,100)
+        self.b.setGeometry(468,451,82,100)
         self.b.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
         self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.b.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.n = QPushButton('n', self)
-        self.n.setGeometry(604,513,82,100)
+        self.n.setGeometry(550,451,82,100)
         self.n.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
         self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.n.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.m = QPushButton('m', self)
-        self.m.setGeometry(695,513,82,100)
+        self.m.setGeometry(632,451,82,100)
         self.m.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
         self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.m.clicked.connect(self.insert_text)
         self.po = QPushButton('.', self)
-        self.po.setGeometry(786,513,82,100)
+        self.po.setGeometry(714,451,82,100)
         self.po.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
         self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.po.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        
+        self.clear = QPushButton('?', self)
+        self.clear.setGeometry(796,451,82,100)
+        self.clear.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
+        self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear.clicked.connect(self.insert_text)
+        clr=u'\u232b'
+        self.clear2 = QPushButton(clr, self)
+        self.clear2.setGeometry(878,451,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.clear1)
+
+##
+        self.shift = QPushButton("!", self)
+        self.shift.setGeometry(58,552,82,100)
+        self.shift.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
+        self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.shift.clicked.connect(self.insert_text)
+        
+        #self.a.clicked.connect(self.call_delete1)
+        self.z = QPushButton('@', self)
+        self.z.setGeometry(140,552,82,100)
+        self.z.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
+        self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.z.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.x = QPushButton('#', self)
+        self.x.setGeometry(222,552,82,100)
+        self.x.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
+        self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.x.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.c = QPushButton('$', self)
+        self.c.setGeometry(304,552,82,100)
+        self.c.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
+        self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.c.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.v = QPushButton('%', self)
+        self.v.setGeometry(386,552,82,100)
+        self.v.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
+        self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.v.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.b = QPushButton('^', self)
+        self.b.setGeometry(468,552,82,100)
+        self.b.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
+        self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.b.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.n = QPushButton('_', self)
+        self.n.setGeometry(550,552,82,100)
+        self.n.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
+        self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.n.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.m = QPushButton('*', self)
+        self.m.setGeometry(632,552,82,100)
+        self.m.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
+        self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.m.clicked.connect(self.insert_text)
+        self.po = QPushButton('(', self)
+        self.po.setGeometry(714,552,82,100)
+        self.po.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
+        self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.po.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         clr=u'\u232b'
-        self.clear = QPushButton(clr, self)
-        self.clear.setGeometry(877,513,82,100)
+        self.clear = QPushButton(')', self)
+        self.clear.setGeometry(796,552,82,100)
         self.clear.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
         self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
-        self.clear.clicked.connect(self.clear1)
+        self.clear.clicked.connect(self.insert_text)
+
+        self.clear2 = QPushButton("~", self)
+        self.clear2.setGeometry(878,552,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.insert_text)
+##
         self.change = QPushButton('123', self)
-        self.change.setGeometry(58,638,180,100)
+        self.change.setGeometry(58,653,100,100)
         self.change.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.change)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.change.setGraphicsEffect(effect)
         self.change.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.change.clicked.connect(self.change_numeric)
         
         self.dash = QPushButton('-', self)
-        self.dash.setGeometry(253,638,125,100)
+        self.dash.setGeometry(158,653,100,100)
         self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
         self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.dash.clicked.connect(self.insert_text)
-        
+
+        self.dash = QPushButton('ARB', self)
+        self.dash.setGeometry(258,653,100,100)
+        self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
+        self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.dash.clicked.connect(self.arbitoenglish)        
         self.space = QPushButton('space', self)
-        self.space.setGeometry(388,638,338,100)
+        self.space.setGeometry(358,653,340,100)
         self.space.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.space)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.space.setGraphicsEffect(effect)
         self.space.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.space.clicked.connect(self.space1)
         
         self.enter = QPushButton('enter', self)
-        self.enter.setGeometry(738,638,230,100)
+        self.enter.setGeometry(698,653,260,100)
         self.enter.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.enter)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.enter.setGraphicsEffect(effect)
         self.enter.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.enter.clicked.connect(self.enter1)
+
+
+    def arbitoenglish(self):
+        self.close()
+        #self.destroy()
+        #gc.collect()
+
+        self.capital_keyboard1=arabickeyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
+        windoww.win.addSubWindow(self.capital_keyboard1)
+        self.capital_keyboard1.show()
 
     def insert_text(self,data):
             sender = self.sender()
@@ -7327,7 +8601,14 @@ padding: 4px; color: black''')
         self.numerickeyboard1.show()
         
         
-            
+class stylesheet():
+  back='''background-color:#C9282F;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: #C9282F;
+padding: 4px; color: black'''
+  dataview="QTreeWidget{background-color:white;color: black;} QTreeWidget:item {border: 1px solid #d9d9d9;border-top-color: black;border-bottom-color: transparent;color:black;} QTreeWidget:item:selected{background-color:#4c94f7}"
+                 
 class capital_keyboard(QMdiSubWindow):
     def __init__(self,mainwindowshow,previouswindow,entry_small):
         super().__init__()
@@ -7389,364 +8670,722 @@ class capital_keyboard(QMdiSubWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.bg = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('123.png'))
+        #self.bg.setPixmap(QPixmap('123.png'))
+        self.bg.setStyleSheet("background-color:#f8f8f8")
         self.bg.setGeometry(0,100,1024,668)
 
         self.label = QLabel(self.labelshow,self)
         self.label.setFont(QFont('Arial', 15))
-        self.label.setStyleSheet('background-color:white; color: black; border-style:solid;')
-        self.label.setGeometry(20,116,220,85)
+        self.label.setStyleSheet('background-color:white; color: black; border-style:solid;border-width: 1px;')
+        self.label.setGeometry(20,116,200,85)
 
         self.entry = QLineEdit(self)
         self.entry.setFont(QFont('Arial', 21))
         self.entry.setGeometry(220,116,750,85)
-        self.entry.setStyleSheet('background-color:white; color: black')
+        self.entry.setStyleSheet('background-color:white; color: black;border-style:solid;border-width: 2px;')
         self.entry.setPlaceholderText(self.labelshow)
+        self.entry.setMaxLength(self.length)
         self.entry.setAlignment(Qt.AlignLeft)
         self.entry.setReadOnly(True)
-        self.entry.setMaxLength(self.length)
         self.entry.setText(self.entrys)
         #self.entry.setEnabled(False);
         #self.entry.setTextInteractionFlags(Qt.TextSelectableByMouse | Qt.TextSelectableByKeyboard)
         #self.entry.setFocus()
-        q = QPushButton('Q', self)
+        q = QPushButton("Q", self)
         q.setGeometry(59,249,82,100)
         q.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(q)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        q.setGraphicsEffect(effect)
         q.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         q.clicked.connect(partial(self.insert_text,data='q'))
         #q.clicked.connect(lambda: self.insert_text(data='q'))
-        self.w = QPushButton('W', self)
-        self.w.setGeometry(149,249,82,100)
+        self.w = QPushButton("W", self)
+        self.w.setGeometry(141,249,82,100)
         self.w.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.w)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.w.setGraphicsEffect(effect)
         self.w.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.w.clicked.connect(self.insert_text)
-        self.e = QPushButton('E', self)
-        self.e.setGeometry(240,249,82,100)
+        self.e = QPushButton("E", self)
+        self.e.setGeometry(223,249,82,100)
         self.e.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.e)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.e.setGraphicsEffect(effect)
         self.e.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.e.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.r = QPushButton('R', self)
-        self.r.setGeometry(331,249,82,100)
+        self.r = QPushButton("R", self)
+        self.r.setGeometry(305,249,82,100)
         self.r.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.r)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.r.setGraphicsEffect(effect)
         self.r.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.r.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.t = QPushButton('T', self)
-        self.t.setGeometry(422,249,82,100)
+        self.t.setGeometry(387,249,82,100)
         self.t.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.t)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.t.setGraphicsEffect(effect)
         self.t.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.t.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.y = QPushButton('Y', self)
-        self.y.setGeometry(513,249,82,100)
+        self.y.setGeometry(469,249,82,100)
         self.y.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.y)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.y.setGraphicsEffect(effect)
         self.y.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.y.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.u = QPushButton('U', self)
-        self.u.setGeometry(604,249,82,100)
+        self.u.setGeometry(551,249,82,100)
         self.u.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.u)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.u.setGraphicsEffect(effect)
         self.u.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.u.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.i = QPushButton('I', self)
-        self.i.setGeometry(695,249,82,100)
+        self.i.setGeometry(633,249,82,100)
         self.i.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.i)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.i.setGraphicsEffect(effect)
         self.i.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.i.clicked.connect(self.insert_text)
-        self.o = QPushButton('O', self)
-        self.o.setGeometry(786,249,82,100)
+        self.o = QPushButton(str("O"), self)
+        self.o.setGeometry(715,249,82,100)
         self.o.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.o)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.o.setGraphicsEffect(effect)
         self.o.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.o.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.p = QPushButton('P', self)
-        self.p.setGeometry(877,249,82,100)
+        self.p = QPushButton(str("P"), self)
+        self.p.setGeometry(797,249,82,100)
         self.p.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p.setGraphicsEffect(effect)
         self.p.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.p.clicked.connect(self.insert_text)
+
+        self.p1 = QPushButton(str("|"), self)
+        self.p1.setGeometry(879,249,82,100)
+        self.p1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.p1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.p1.setGraphicsEffect(effect)
+        self.p1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.p1.clicked.connect(self.insert_text)
         
-        self.a = QPushButton('A', self)
-        self.a.setGeometry(59,380,82,100)
+        self.a = QPushButton("A", self)
+        self.a.setGeometry(59,350,82,100)
         self.a.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.a)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.a.setGraphicsEffect(effect)
         self.a.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.a.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.s = QPushButton('S', self)
-        self.s.setGeometry(149,380,82,100)
+        self.s = QPushButton("S", self)
+        self.s.setGeometry(141,350,82,100)
         self.s.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.s)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.s.setGraphicsEffect(effect)
         self.s.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.s.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.d = QPushButton('D', self)
-        self.d.setGeometry(240,380,82,100)
+        self.d = QPushButton("D", self)
+        self.d.setGeometry(223,350,82,100)
         self.d.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.d)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.d.setGraphicsEffect(effect)
         self.d.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.d.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.f = QPushButton('F', self)
-        self.f.setGeometry(331,380,82,100)
+        self.f = QPushButton("F", self)
+        self.f.setGeometry(305,350,82,100)
         self.f.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.f)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.f.setGraphicsEffect(effect)
         self.f.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.f.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.g = QPushButton('G', self)
-        self.g.setGeometry(422,380,82,100)
+        self.g = QPushButton(("G"), self)
+        self.g.setGeometry(387,350,82,100)
         self.g.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.g)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.g.setGraphicsEffect(effect)
         self.g.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.g.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.h = QPushButton('H', self)
-        self.h.setGeometry(513,380,82,100)
+        self.h.setGeometry(469,350,82,100)
         self.h.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.h)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.h.setGraphicsEffect(effect)
         self.h.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.h.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.j = QPushButton('J', self)
-        self.j.setGeometry(604,380,82,100)
+        self.j = QPushButton("J", self)
+        self.j.setGeometry(551,350,82,100)
         self.j.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.j)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.j.setGraphicsEffect(effect)
         self.j.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.j.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.k = QPushButton('K', self)
-        self.k.setGeometry(695,380,82,100)
+        self.k.setGeometry(633,350,82,100)
         self.k.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.k)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.k.setGraphicsEffect(effect)
         self.k.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.k.clicked.connect(self.insert_text)
-        self.l = QPushButton('L', self)
-        self.l.setGeometry(786,380,82,100)
+        self.l = QPushButton("L", self)
+        self.l.setGeometry(715,350,82,100)
         self.l.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.l)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.l.setGraphicsEffect(effect)
         self.l.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.l.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
-        self.col = QPushButton(':', self)
-        self.col.setGeometry(877,380,82,100)
+        self.col = QPushButton(":", self)
+        self.col.setGeometry(797,350,82,100)
         self.col.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col.setGraphicsEffect(effect)
         self.col.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.col.clicked.connect(self.insert_text)
+
+        self.col1 = QPushButton("'", self)
+        self.col1.setGeometry(879,350,82,100)
+        self.col1.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.col1)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.col1.setGraphicsEffect(effect)
+        self.col1.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.col1.clicked.connect(self.insert_text)
+
         qq=u'\u21E7'
 
         self.shift = QPushButton(qq, self)
-        self.shift.setGeometry(58,514,83,100)
-        self.shift.setFont(QFont('Arial', 40))
+        self.shift.setGeometry(58,451,82,100)
+        self.shift.setFont(QFont('Arial', 38))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
         self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.shift.clicked.connect(self.shift1)
         
         #self.a.clicked.connect(self.call_delete1)
         self.z = QPushButton('Z', self)
-        self.z.setGeometry(149,513,82,100)
+        self.z.setGeometry(140,451,82,100)
         self.z.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
         self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.z.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.x = QPushButton('X', self)
-        self.x.setGeometry(240,513,82,100)
+        self.x.setGeometry(222,451,82,100)
         self.x.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
         self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.x.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.c = QPushButton('C', self)
-        self.c.setGeometry(331,513,82,100)
+        self.c.setGeometry(304,451,82,100)
         self.c.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
         self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.c.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.v = QPushButton('V', self)
-        self.v.setGeometry(422,513,82,100)
+        self.v.setGeometry(386,451,82,100)
         self.v.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
         self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.v.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.b = QPushButton('B', self)
-        self.b.setGeometry(513,513,82,100)
+        self.b.setGeometry(468,451,82,100)
         self.b.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
         self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.b.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.n = QPushButton('N', self)
-        self.n.setGeometry(604,513,82,100)
+        self.n.setGeometry(550,451,82,100)
         self.n.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
         self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.n.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         self.m = QPushButton('M', self)
-        self.m.setGeometry(695,513,82,100)
+        self.m.setGeometry(632,451,82,100)
         self.m.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
         self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.m.clicked.connect(self.insert_text)
         self.po = QPushButton('.', self)
-        self.po.setGeometry(786,513,82,100)
+        self.po.setGeometry(714,451,82,100)
         self.po.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
         self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.po.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        
+        self.clear = QPushButton('?', self)
+        self.clear.setGeometry(796,451,82,100)
+        self.clear.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
+        self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear.clicked.connect(self.insert_text)
+        clr=u'\u232b'
+        self.clear2 = QPushButton(clr, self)
+        self.clear2.setGeometry(878,451,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.clear1)
+
+##
+        self.shift = QPushButton("!", self)
+        self.shift.setGeometry(58,552,82,100)
+        self.shift.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.shift)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.shift.setGraphicsEffect(effect)
+        self.shift.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.shift.clicked.connect(self.insert_text)
+        
+        #self.a.clicked.connect(self.call_delete1)
+        self.z = QPushButton('@', self)
+        self.z.setGeometry(140,552,82,100)
+        self.z.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.z)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.z.setGraphicsEffect(effect)
+        self.z.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.z.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.x = QPushButton('#', self)
+        self.x.setGeometry(222,552,82,100)
+        self.x.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.x)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.x.setGraphicsEffect(effect)
+        self.x.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.x.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.c = QPushButton('$', self)
+        self.c.setGeometry(304,552,82,100)
+        self.c.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.c)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.c.setGraphicsEffect(effect)
+        self.c.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.c.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.v = QPushButton('%', self)
+        self.v.setGeometry(386,552,82,100)
+        self.v.setFont(QFont('Arial', 30))
+        effect = QGraphicsDropShadowEffect(self.v)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.v.setGraphicsEffect(effect)
+        self.v.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.v.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.b = QPushButton('^', self)
+        self.b.setGeometry(468,552,82,100)
+        self.b.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.b)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.b.setGraphicsEffect(effect)
+        self.b.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.b.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.n = QPushButton('_', self)
+        self.n.setGeometry(550,552,82,100)
+        self.n.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.n)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.n.setGraphicsEffect(effect)
+        self.n.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.n.clicked.connect(self.insert_text)
+        #self.a.clicked.connect(self.call_delete1)
+        self.m = QPushButton('*', self)
+        self.m.setGeometry(632,552,82,100)
+        self.m.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.m)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.m.setGraphicsEffect(effect)
+        self.m.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.m.clicked.connect(self.insert_text)
+        self.po = QPushButton('(', self)
+        self.po.setGeometry(714,552,82,100)
+        self.po.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.po)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.po.setGraphicsEffect(effect)
+        self.po.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.po.clicked.connect(self.insert_text)
         #self.a.clicked.connect(self.call_delete1)
         clr=u'\u232b'
-        self.clear = QPushButton(clr, self)
-        self.clear.setGeometry(877,513,82,100)
+        self.clear = QPushButton(')', self)
+        self.clear.setGeometry(796,552,82,100)
         self.clear.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear.setGraphicsEffect(effect)
         self.clear.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
-        self.clear.clicked.connect(self.clear1)
+        self.clear.clicked.connect(self.insert_text)
+
+        self.clear2 = QPushButton("~", self)
+        self.clear2.setGeometry(878,552,82,100)
+        self.clear2.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.clear2)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.clear2.setGraphicsEffect(effect)
+        self.clear2.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.clear2.clicked.connect(self.insert_text)
+##
         self.change = QPushButton('123', self)
-        self.change.setGeometry(58,638,180,100)
+        self.change.setGeometry(58,653,100,100)
         self.change.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.change)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.change.setGraphicsEffect(effect)
         self.change.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.change.clicked.connect(self.change_numeric)
         
         self.dash = QPushButton('-', self)
-        self.dash.setGeometry(253,638,125,100)
+        self.dash.setGeometry(158,653,100,100)
         self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
         self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.dash.clicked.connect(self.insert_text)
-        
+
+        self.dash = QPushButton('ARB', self)
+        self.dash.setGeometry(258,653,100,100)
+        self.dash.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.dash)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.dash.setGraphicsEffect(effect)
+        self.dash.setStyleSheet('''background-color:white;border: none;border-style: outset;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
+padding: 4px; color: black''')
+        self.dash.clicked.connect(self.arbitoenglish)        
         self.space = QPushButton('space', self)
-        self.space.setGeometry(388,638,338,100)
+        self.space.setGeometry(358,653,340,100)
         self.space.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.space)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.space.setGraphicsEffect(effect)
         self.space.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.space.clicked.connect(self.space1)
         
         self.enter = QPushButton('enter', self)
-        self.enter.setGeometry(738,638,230,100)
+        self.enter.setGeometry(698,653,260,100)
         self.enter.setFont(QFont('Arial', 24))
+        effect = QGraphicsDropShadowEffect(self.enter)
+        effect.setOffset(0, 0)
+        effect.setBlurRadius(1)
+        self.enter.setGraphicsEffect(effect)
         self.enter.setStyleSheet('''background-color:white;border: none;border-style: outset;
-border-width: 2px;
-border-radius: 1px;
-border-color: black;
+border-width: 1px;
+border-radius: 10px;
+border-color: gray;
 padding: 4px; color: black''')
         self.enter.clicked.connect(self.enter1)
-    
+
+    def arbitoenglish(self):
+        self.close()
+        #self.destroy()
+        #gc.collect()
+
+        self.keyboard1=arabickeyboard(self.mainwindowshow,self.previouswindow,self.entry.text())
+        windoww.win.addSubWindow(self.keyboard1)
+        self.keyboard1.show()
     def insert_text(self,data):
             sender = self.sender()
 ##            print(sender.text())
@@ -7940,7 +9579,7 @@ class popup1(QDialog):
             self._gif.setMovie(movie)
             movie.setSpeed(500)
             movie.start()
-            label1 = QLabel('Error',self)
+            label1 = QLabel(str("Erreur"),self)
             label1.setFont(QFont('Arialbold', 22))
             label1.setStyleSheet('background-color:white;border:0px solid white')
             label1.move(236,130)
@@ -7982,7 +9621,7 @@ class popup2(QDialog):
             self._gif.setMovie(movie)
             movie.setSpeed(500)
             movie.start()
-            label1 = QLabel('Notification',self)
+            label1 = QLabel(str(" Notificstion"),self)
             label1.setFont(QFont('Arialbold', 22))
             label1.setStyleSheet('background-color:white;border:0px solid white')
             label1.move(220,130)
@@ -8083,7 +9722,7 @@ class subwindow2(QMainWindow):
         #print('faisal')
         #time = QTime.currentTime().toString()
         currentDT = datetime.now()
-        date=currentDT.strftime("%d-%b-%Y")
+        date=currentDT.strftime("%d-%m-%Y")
         time=currentDT.strftime("%H:%M:%S")
         self.date_label.setText(date)
         self.time_label.setText(time)   
@@ -8094,8 +9733,8 @@ class subwindow2(QMainWindow):
             self.ct.setText(mainwindow1.toptext)
             self.ct1.setText(mainwindow1.lowertext)
         else:
-            
-            mainwindow1.toptext="Current Temperature"
+            c_temperature=str('température actuelle')
+            mainwindow1.toptext=c_temperature
             mainwindow1.lowertext='           '+str(x_t)+degree_sign+'C'
             self.ct.setText(mainwindow1.toptext)
             self.ct1.setText(mainwindow1.lowertext)
@@ -8114,10 +9753,10 @@ class subwindow2(QMainWindow):
         self.label.setPixmap(QPixmap('header.png'))
         self.label.setGeometry(0,0,1024,100)
         self.ct = QLabel(self)
-        self.ct.setFont(QFont('Arial', 18))
+        self.ct.setFont(QFont('Arial', 20))
         #self.ct.setWeight(QFont(Bold))
         self.ct.setStyleSheet('background-color:#efeeef;')
-        self.ct.setGeometry(400, 13,600,50)
+        self.ct.setGeometry(410, 5,600,50)
         self.ct1 = QLabel(self)
         self.ct1.setFont(QFont('Arial', 21))
         self.ct1.setStyleSheet('background-color:#efeeef;')
@@ -8125,7 +9764,7 @@ class subwindow2(QMainWindow):
         self.date_label = QLabel(self)
         self.date_label.setFont(QFont('Arial', 20,16))
         self.date_label.setStyleSheet('background-color:#efeeef;')
-        self.date_label.setGeometry(800, 13,160,30)
+        self.date_label.setGeometry(810, 13,160,30)
         self.time_label = QLabel(self)
         self.time_label.setFont(QFont('Arial', 20,16))
         self.time_label.setStyleSheet('background-color:#efeeef;')
@@ -8248,47 +9887,47 @@ class subwindow(QMdiSubWindow):
         #self.s1 = Switch(self)
         #self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        buttonWindow1 = QPushButton('Start Test', self)
-        buttonWindow1.setFont(QFont('Arial', 27))
+        buttonWindow1 = QPushButton('      Démarrer le test', self)
+        buttonWindow1.setFont(QFont('Arial', 22))
         buttonWindow1.setGeometry(20,160,285,155)
         buttonWindow1.setStyleSheet('background-image: url(start.png);')
         buttonWindow1.clicked.connect(self.buttonWindow1_onClick)
-        Settings = QPushButton('Settings  ', self)
-        Settings.setFont(QFont('Arial', 27))
+        Settings = QPushButton(' Paramètres', self)
+        Settings.setFont(QFont('Arial', 22))
         Settings.setGeometry(20,350,285,155)
         Settings.setStyleSheet('background-image: url(setting.png);')
         Settings.clicked.connect(self.settingswindow)
-        User = QPushButton('User      ', self)
-        User.setFont(QFont('Arial', 27))
+        User = QPushButton('Utilisateur', self)
+        User.setFont(QFont('Arial', 22))
         User.setGeometry(20,540,285,155)
         User.setStyleSheet('background-image: url(user.png);')
         User.clicked.connect(self.userswindow)
         
         
-        Results = QPushButton('Results', self)
-        Results.setFont(QFont('Arial', 27))
+        Results = QPushButton('Résultats', self)
+        Results.setFont(QFont('Arial', 22))
         Results.setGeometry(330,160,285,155)
         Results.setStyleSheet('background-image: url(Result.png);')
         Results.clicked.connect(self.resultswindow)
         
         #windoww.win.addSubWindow(self.rw)
-        About = QPushButton('About  ', self)
-        About.setFont(QFont('Arial', 27))
+        About = QPushButton('    À propos de', self)
+        About.setFont(QFont('Arial', 22))
         About.setGeometry(330,350,285,155)
         About.setStyleSheet('background-image: url(about.png);')
         About.clicked.connect(self.aboutwindow)
-        Damper = QPushButton('Damper ', self)
-        Damper.setFont(QFont('Arial', 27))
+        Damper = QPushButton('    Amortisseur', self)
+        Damper.setFont(QFont('Arial', 22))
         Damper.setGeometry(330,540,285,155)
         Damper.setStyleSheet('background-image: url(damper.png);')
         Damper.clicked.connect(self.damperwindow)
         self.n = QPushButton(self)
-        self.n.setFont(QFont('Arial', 27))
+        self.n.setFont(QFont('Arial', 22))
         self.n.setGeometry(800,630,50,50)
         self.n.setStyleSheet('background-image: url(notification1.png);border: none;border-style: outset;')
         self.s = QPushButton(self)
         self.s.setCheckable(True)
-        self.s.setFont(QFont('Arial', 27))
+        self.s.setFont(QFont('Arial', 22))
         self.s.setChecked(self.sounds)        
         self.s.setStyleSheet(("QPushButton{background-image: url(sound_on.png); color: white;border: none;} QPushButton:checked { background-image: url(sound_off.png);color:black; }"))
         self.s.clicked.connect(lambda sounds:self.control(sounds))
@@ -8302,9 +9941,6 @@ class subwindow(QMdiSubWindow):
         self.n.clicked.connect(self.notification_1)
         #self.close()
         self.start1()
-        #self.one=1
-        #objgraph.show_refs(self, filename='sample-graph.png')
-        #self.show()
     def start1(self):
         conn = sqlite3.connect('faisal.db')
         c = conn.cursor() 
@@ -8326,8 +9962,8 @@ class subwindow(QMdiSubWindow):
           for row in result:
               temp_liststart.append(row)
               starttestdata.temperature=temp_liststart[0][2]
-              starttestdata.hours='infinity'
-              starttestdata.minutes='infinity'
+              starttestdata.hours=str("infinity")
+              starttestdata.minutes=str("infinity")
               starttestdata.level=temp_liststart[0][6]
               starttestdata.fanspeed=temp_liststart[0][5]
               starttestdata.username=temp_liststart[0][4]
@@ -8444,47 +10080,49 @@ class userswindow(QMdiSubWindow):
         
         self.setGeometry(self.top, self.left, self.width, self.height)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        self.setStyleSheet('background-color:#f7f7ff;')
-        self.label = QLabel('Users Data',self)
-        self.label.setFont(QFont('Arial', 19))
+        self.label = QLabel(self)
+        self.label.setPixmap(QPixmap('background1.png'))
+        self.label.setGeometry(0,100,1024,668)
+        users_data_arbi=str("données  des utilisateurs")
+        self.label = QLabel(users_data_arbi,self)
+        self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
-        self.label.setGeometry(400,120,220,50)
+        self.label.setGeometry(370,120,400,50)
 
-        back=u'\u0627'+u'\u0644'+u'\u0631'+u'\u062C'+u'\u0648'+u'\u0639'
+        back="\u2190     Retour      "#self.pushButton_2.setGeometry(QRect(60, 202, 241, 61))
         self.back = QPushButton(back, self)
-        self.back.setGeometry(750,200,240,70)
-        self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
-border-width: 0.5px;
-border-radius: 0px;
-border-color: black;
-padding: 4px; color: black''')
+        self.back.setGeometry(750,202,230,61)
+        self.back.setFont(QFont('Arial', 17))
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
-        self.addnewuser = QPushButton('Add New User', self)
-        self.addnewuser.setGeometry(30,200,240,70)
-        self.addnewuser.setFont(QFont('Arial', 21))
+        addnewuser_arbi=str("ajouter un nouvel ")
+        self.addnewuser = QPushButton(addnewuser_arbi, self)
+        self.addnewuser.setGeometry(30,200,230,61)
+        self.addnewuser.setFont(QFont('Arial', 17))
         self.addnewuser.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
-border-radius: 0px;
+border-radius: 10px;
 border-color: black;
 padding: 4px; color: black''')
         self.addnewuser.clicked.connect(self.call_add)
-        self.edituser = QPushButton('Edit User', self)
-        self.edituser.setGeometry(270,200,240,70)
-        self.edituser.setFont(QFont('Arial', 21))
+        edituser_arbi="modifier l'utilisateur"
+        self.edituser = QPushButton(edituser_arbi, self)
+        self.edituser.setGeometry(270,200,230,61)
+        self.edituser.setFont(QFont('Arial', 17))
         #self.edituser.setStyleSheet('background-color:#4299ff; color: white')
         self.edituser.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
-border-radius: 0px;
+border-radius: 10px;
 border-color: black;
 padding: 4px; color: black''')
         self.edituser.clicked.connect(self.call_edit)
-        self.deleteuser = QPushButton('Delete User', self)
-        self.deleteuser.setGeometry(510,200,240,70)
-        self.deleteuser.setFont(QFont('Arial', 21))
+        deleteuser_arbi=str("supprimer l'utilisateur")
+        self.deleteuser = QPushButton(deleteuser_arbi, self)
+        self.deleteuser.setGeometry(510,200,230,61)
+        self.deleteuser.setFont(QFont('Arial', 17))
         self.deleteuser.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
-border-radius: 0px;
+border-radius: 10px;
 border-color: black;
 padding: 4px; color: black''')
         self.deleteuser.clicked.connect(self.call_delete1)
@@ -8501,6 +10139,7 @@ padding: 4px; color: black''')
 # tree.setItemDelegate(delegate)
 
         self.dataView = extQTreeWidget1(self)
+        self.dataView.setAlternatingRowColors(True)
         #self.dataView.model=QAbstractItemModel()
         self.dataView.setRootIsDecorated(False)
         #self.dataView.setExpandsOnDoubleClick(True)
@@ -8508,20 +10147,25 @@ padding: 4px; color: black''')
         #self.dataView.setUniformRowHeights(True)
         #self.dataView.uniformRowHeights()
         #self.dataView.setAlternatingRowColors(True)
-        self.dataView.setHeaderLabels(['Ref No','User Name','Employer Id','Contact','Designation'])
+        heading_user_arbi=str("nom de l'utilisateur")
+        heading_employer_arbi=str("Identifiant de l'employeur")
+        heading_contact_arbi=str("Contact")
+        heading_designation_arbi=str("Dénomination")
+        self.dataView.setHeaderLabels(["N° de réf.",heading_user_arbi,heading_employer_arbi,heading_contact_arbi,heading_designation_arbi])
+        #self.dataView.header().setDefaultAlignment(Qt.AlignRight)
         #self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size: 21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
         #item=QTreeWidgetItem(['Ref No','User Name','Employer Id','Contact','Designation'])
         #self.dataView.addTopLevelItem(item)
         #self.dataView.header().setStretchLastSection(False)
         #self.dataView.header().setResizeMode(6, QHeaderView.Stretch)
-        self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:21pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
+        self.dataView.header().setStyleSheet('padding-top:-2px;background-color:white;font-size:17pt; font-family: Arial;border-width:1px;border-style:outset;border-color:black; ')
         #self.dataView.header().setSelected(False)
         #self.dataView.header().setStretchLastSection(False)
         #self.dataView.header().sectionsMovable()
         #self.dataView.header().setResizeMode(0, QHeaderView.Stretch)
-        self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
-        self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
-        self.dataView.header().setResizeMode(3, QHeaderView.Stretch)
+        #self.dataView.header().setResizeMode(1, QHeaderView.Stretch)
+        #self.dataView.header().setResizeMode(2, QHeaderView.Stretch)
+        #self.dataView.header().setResizeMode(3, QHeaderView.Stretch)
         #self.dataView.header().setResizeMode(4, QHeaderView.Stretch)
         #self.dataView.header().setSectionResizeMode(Fixed)
         #font=QFont()            
@@ -8538,13 +10182,14 @@ padding: 4px; color: black''')
        #self.dataView.header().setResizeMode(False)
         self.dataView.setColumnCount(5)
         #self.dataView.setSizeHint(0,QSize(10,10))
-        self.dataView.setColumnWidth(0,100)
-        self.dataView.setColumnWidth(1,100)
-        self.dataView.setColumnWidth(2,100)
-        self.dataView.setColumnWidth(3,100)
-        self.dataView.setColumnWidth(4,100)
+        self.dataView.setColumnWidth(0,0)
+        self.dataView.setColumnWidth(1,220)
+        self.dataView.setColumnWidth(2,220)
+        self.dataView.setColumnWidth(3,220)
+        self.dataView.setColumnWidth(4,220)
         self.dataView.setColumnWidth(5,0)
-        self.dataView.setStyleSheet('background-color:white;color: black;')
+        #self.dataView.setStyleSheet('QTreeWidget{background-color:white;color: black;}' 'QTreeWidget:item {border: 1px solid #d9d9d9;border-top-color: black;border-bottom-color: transparent;color:black;}')
+        self.dataView.setStyleSheet(stylesheet.dataview)
         #self.dataView.item.setStyleSheet('color:yellow;')
         self.dataView.setFont(QFont('Times New Roman', 22))
         #self.dataView.setIconSize(QSize(32,32))
@@ -8556,7 +10201,7 @@ padding: 4px; color: black''')
 ##           QTreeWidgetItem(self.dataView,x) 
 
         self.dataView.setGeometry(10,300,1010,465)
-        #self.dataView.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
+        self.dataView.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
         QScroller.grabGesture(self.dataView.viewport(), QScroller.TouchGesture)
         #self.dataView.setVerticalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.dataView.itemClicked.connect(self.onItemClicked)
@@ -8590,7 +10235,9 @@ padding: 4px; color: black''')
                 l.append(row)
             for i,x in enumerate(l):
                 #print(i,x)
-                QTreeWidgetItem(self.dataView,[str(i),x[0],x[1],x[2],x[3],x[4]]) 
+                #xa=QTreeWidgetItem(self.dataView,[x[3],x[2],x[1],x[0],str(i),x[4]]) 
+                QTreeWidgetItem(self.dataView,[str(i),x[0],x[1],x[2],x[3],x[4]])
+
             
 
 
@@ -8649,6 +10296,7 @@ padding: 4px; color: black''')
                     #print(i,x)
                     QTreeWidgetItem(self.dataView,[str(i),x[0],x[1],x[2],x[3],x[4]])
 
+
             a.close()
             a.destroy()
             gc.collect()
@@ -8685,20 +10333,20 @@ padding: 4px; color: black''')
             #movie.setEndValue(QColor(255, 255, 255))
             #print(movie.state())
             movie.start()
-            label1 = QLabel('Error',a)
+            label1 = QLabel(str("Erreur "),a)
             label1.setFont(QFont('Arialbold', 22))
             label1.setStyleSheet('background-color:white;border:0px solid white')
             label1.move(236,130)
-            label2 = QLabel('Are you sure you want to delete this user !',a)
-            label2.setFont(QFont('Arial', 19))
+            label2 = QLabel(str("êtes-vous sûr de vouloir supprimer cet utilisateur"),a)
+            label2.setFont(QFont('Arial', 16))
             label2.setStyleSheet('background-color:white;border:0px solid white')
-            label2.move(50,170)
-            yes_delete = QPushButton('Yes !', a)
+            label2.move(40,170)
+            yes_delete = QPushButton(str("Oui "), a)
             yes_delete .setGeometry(50,240,240,90)
             yes_delete .setFont(QFont('Arial', 21))
             yes_delete .setStyleSheet('background-color:#d00403; color: white')
             yes_delete .clicked.connect(call_delete)
-            no = QPushButton('No', a)
+            no = QPushButton(str("Non"), a)
             no.setGeometry(270,240,240,90)
             no.setFont(QFont('Arial', 21))
             no.setStyleSheet('background-color:#4299ff; color: white')
@@ -8706,7 +10354,7 @@ padding: 4px; color: black''')
             a.show()
         except:
             print("error")
-            self.popup1=popup1(name='    Please select any user to continue',name2='Okay!')
+            self.popup1=popup1(name=str("veuillez sélectionner un utilisateur à modifier"),name2='ok')
             self.popup1.show()
 
         
@@ -8737,7 +10385,7 @@ padding: 4px; color: black''')
             self.getChildNode=''
         except:
             print("error")
-            self.popup1=popup1(name='      Please select any user to edit!',name2='Okay!')
+            self.popup1=popup1(name=str("Veuillez sélectionner n'importe quelle valeur "),name2=str("Fermer"))
             self.popup1.show()
 
     
@@ -8835,83 +10483,80 @@ class adduser(QMdiSubWindow):
         self.setStyleSheet('background-color:#f7f7ff;')
         self.bg = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('userscreen.png'))
+        self.bg.setPixmap(QPixmap('userscreen2.png'))
         self.bg.setGeometry(0,100,1024,668)
-
-        self.label = QLabel('Add New User',self)
+        addnewuser_arbi=str("ajouter un nouvel utilisateur")
+        self.label = QLabel(addnewuser_arbi,self)#self.label.setGeometry(300,120,320,50)
         self.label.setFont(QFont('Arial', 22))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(460,135,300,50)
-
-        back = QPushButton('Back', self)
-        back.setGeometry(755,547,190,75)
-        back.setFont(QFont('Arial', 21))
-        back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
-border-width: 0.5px;
-border-radius: 0px;
-border-color: black;
-padding: 4px; color: black''')
+        self.label.setGeometry(370,125,400,50)
+        back="\u2190      Retour        "
+        back = QPushButton(back, self)#self.pushButton_2.setGeometry(QRect(60, 202, 241, 61))
+        back.setGeometry(700,202,241,61)
+        back.setFont(QFont('Arial', 17))
+        back.setStyleSheet(stylesheet.back)
         back.clicked.connect(self.call_back)
 
-        self.addnewuser = QPushButton('Add User', self)
-        self.addnewuser.setGeometry(535,547,200,75)
-        self.addnewuser.setFont(QFont('Arial', 21))
+        self.addnewuser = QPushButton(str("Ajouter un utilisateur"), self)
+        self.addnewuser.setGeometry(435,202,241,61)
+        self.addnewuser.setFont(QFont('Arial', 17))
         self.addnewuser.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
-border-radius: 0px;
+border-radius: 10px;
 border-color: black;
 padding: 4px; color: black''')
         self.addnewuser.clicked.connect(self.call_add)
 
 
 #self.entry = extQLineEdit(self,'entry2')
-        self.e_user = extQLineEdit1(self)
-        self.e_user.setFont(QFont('Arial', 21))
-        self.e_user.setGeometry(469,240,493,53)
+        self.e_user = extQLineEdit1(self)#70|469
+        self.e_user.setFont(QFont('Arial', 17))
+        self.e_user.setGeometry(470,330,493,53)
         self.e_user.setStyleSheet('background-color:white; color: black')
-        self.e_user.setPlaceholderText('Enter User Name')
+        self.e_user.setPlaceholderText(str("Saisissez le nom"))
         self.e_user.speak.connect(partial(self.call_b,data='a_user'))
 
         self.e_employer = extQLineEdit1(self)
-        self.e_employer.setFont(QFont('Arial', 21))
-        self.e_employer.setGeometry(469,315,492,53)
+        self.e_employer.setFont(QFont('Arial', 17))
+        self.e_employer.setGeometry(470,405,492,53)
         self.e_employer.setStyleSheet('background-color:white; color: black')
-        self.e_employer.setPlaceholderText('Enter Employer Id')
+        self.e_employer.setPlaceholderText(str("Saisir le numéro d'identification de l'employeur"))
         self.e_employer.speak.connect(partial(self.call_b,data='a_employer'))
 
         self.e_contact = extQLineEdit1(self)
-        self.e_contact.setFont(QFont('Arial', 21))
-        self.e_contact.setGeometry(469,385,493,53)
+        self.e_contact.setFont(QFont('Arial', 17))
+        self.e_contact.setGeometry(470,475,493,53)
         self.e_contact.setStyleSheet('background-color:white; color: black')
-        self.e_contact.setPlaceholderText('Enter Contact')
+        self.e_contact.setPlaceholderText(str("Entrer   contact"))
         self.e_contact.speak.connect(partial(self.call_b,data='a_contact'))
 
         self.e_designation = extQLineEdit1(self)
-        self.e_designation.setFont(QFont('Arial', 21))
-        self.e_designation.setGeometry(469,455,492,53)
+        self.e_designation.setFont(QFont('Arial',17))
+        self.e_designation.setGeometry(470,545,492,53)
         self.e_designation.setStyleSheet('background-color:white; color: black')
-        self.e_designation.setPlaceholderText('Enter Designation')
+        self.e_designation.setPlaceholderText(str("saisir la dénomination"))
         self.e_designation.speak.connect(partial(self.call_b,data='a_designation'))
-
-        self.user = QLabel('Enter Name',self)
-        self.user.setFont(QFont('Arial', 19))
+        user_arbi=str("Saisissez le nom")
+        self.user = QLabel(user_arbi,self)
+        self.user.setFont(QFont('Arial', 15))
         self.user.setStyleSheet('background-color:white; color: black')
-        self.user.setGeometry(70,270,300,30)
-
-        self.employer_id = QLabel('Enter Employer ID',self)
-        self.employer_id.setFont(QFont('Arial', 19))
+        #self.user.setAlignment(Qt.AlignRight)
+        self.user.setGeometry(55,350,410,30)
+        employer_arbi=str("Saisir le numéro d'identification de l'employeur")
+        self.employer_id = QLabel(employer_arbi,self)
+        self.employer_id.setFont(QFont('Arial', 15))
         self.employer_id.setStyleSheet('background-color:white; color: black')
-        self.employer_id.setGeometry(70,340,300,30)
+        self.employer_id.setGeometry(55,420,410,30)
 
-        self.contact = QLabel('Enter Contact',self)
-        self.contact.setFont(QFont('Arial', 19))
+        self.contact = QLabel(str("Entrer   contact"),self)
+        self.contact.setFont(QFont('Arial', 15))
         self.contact.setStyleSheet('background-color:white; color: black')
-        self.contact.setGeometry(70,410,300,30)
+        self.contact.setGeometry(55,490,410,30)
 
-        self.designation = QLabel('Enter Designation',self)
-        self.designation.setFont(QFont('Arial', 19))
+        self.designation = QLabel(str("saisir la dénomination"),self)
+        self.designation.setFont(QFont('Arial', 15))
         self.designation.setStyleSheet('background-color:white; color: black')
-        self.designation.setGeometry(70,480,300,30)
+        self.designation.setGeometry(55,560,410,30)
         #self.exec_()
 ##    def __del__(self):
 ##        #print("destructor called")
@@ -8975,17 +10620,16 @@ padding: 4px; color: black''')
             self.swindow = userswindow(self.r)
             windoww.win.addSubWindow(self.swindow)
             self.swindow.show()
-            self.popup2=popup2(name='                User has been added !',name2='Close')
+            self.popup2=popup2(name='                utilisateur a été ajouté !',name2='Fermer')
             self.popup2.show()
-            
-            
+
         except ValueError:
                 print("error")
-                self.popup1=popup1(name='           User is already present !',name2='Close')
+                self.popup1=popup1(name="           l'utilisateur est déjà présent  !",name2='Fermer')
                 self.popup1.show()
         except NameError:
                 print("error")
-                self.popup1=popup1(name='            Please Enter All Values !',name2='Close')
+                self.popup1=popup1(name='   Veuillez saisir toutes les valeurs!',name2='Fermer')
                 self.popup1.show()
             
 
@@ -9058,82 +10702,78 @@ class edituser(QMdiSubWindow):
         self.setStyleSheet('background-color:white;')
         self.bg = QLabel(self)
 ##        #self.pixmap = QPixmap('header.png')
-        self.bg.setPixmap(QPixmap('userscreen.png'))
+        self.bg.setPixmap(QPixmap('userscreen2.png'))
         self.bg.setGeometry(0,100,1024,668)
 
-        self.label = QLabel('Edit Current User',self)
-        self.label.setFont(QFont('Arial', 22))
+        self.label = QLabel(str("modifier l'utilisateur actuel"),self)
+        self.label.setFont(QFont('Arial', 25))
         self.label.setStyleSheet('background-color:white; color: black')
-        self.label.setGeometry(460,135,300,50)
-
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(755,547,190,75)
+        self.label.setGeometry(340,125,420,50)
+        back="\u2190      Retour        "
+        self.back = QPushButton(back, self)
+        self.back.setGeometry(700,202,241,61)
         self.back.setFont(QFont('Arial', 21))
-        self.back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
-border-width: 0.5px;
-border-radius: 0px;
-border-color: black;
-padding: 4px; color: black''')
+        self.back.setStyleSheet(stylesheet.back)
         self.back.clicked.connect(self.call_back)
 
-        self.addnewuser = QPushButton('Edit User', self)
-        self.addnewuser.setGeometry(535,547,200,75)
+        self.addnewuser = QPushButton(str("modifier utilisateur"), self)
+        self.addnewuser.setGeometry(435,202,241,61)
         self.addnewuser.setFont(QFont('Arial', 21))
         self.addnewuser.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
-border-radius: 0px;
+border-radius: 10px;
 border-color: black;
 padding: 4px; color: black''')
         self.addnewuser.clicked.connect(self.call_edit)
 
         self.e_user = extQLineEdit1(self)
         self.e_user.setFont(QFont('Arial', 21))
-        self.e_user.setGeometry(469,240,493,53)
+        self.e_user.setGeometry(470,330,493,53)
         self.e_user.setStyleSheet('background-color:white; color: black')
-        self.e_user.setPlaceholderText('Enter User Name')
+        self.e_user.setPlaceholderText(str("Saisissez le nom"))
         self.e_user.speak.connect(partial(self.call_b,data='e_user'))
 
 
         self.e_employer = extQLineEdit1(self)
-        self.e_employer.setFont(QFont('Arial', 21))
-        self.e_employer.setGeometry(469,315,492,53)
+        self.e_employer.setFont(QFont('Arial', 16))
+        self.e_employer.setGeometry(470,405,492,53)
         self.e_employer.setStyleSheet('background-color:white; color: black')
-        self.e_employer.setPlaceholderText('Enter Employer Id')
+        self.e_employer.setPlaceholderText(str("Saisir le numéro d'identification de l'employeur"))
         self.e_employer.speak.connect(partial(self.call_b,data='e_employer'))
 
         self.e_contact = extQLineEdit1(self)
-        self.e_contact.setFont(QFont('Arial', 21))
-        self.e_contact.setGeometry(469,385,493,53)
+        self.e_contact.setFont(QFont('Arial', 16))
+        self.e_contact.setGeometry(470,475,493,53)
         self.e_contact.setStyleSheet('background-color:white; color: black')
-        self.e_contact.setPlaceholderText('Enter Contact')
+        self.e_contact.setPlaceholderText(str("Entrer   contact"))
         self.e_contact.speak.connect(partial(self.call_b,data='e_contact'))
 
         self.e_designation = extQLineEdit1(self)
-        self.e_designation.setFont(QFont('Arial', 21))
-        self.e_designation.setGeometry(469,455,492,53)
+        self.e_designation.setFont(QFont('Arial', 16))
+        self.e_designation.setGeometry(470,545,492,53)
         self.e_designation.setStyleSheet('background-color:white; color: black')
-        self.e_designation.setPlaceholderText('Enter Designation')
+        self.e_designation.setPlaceholderText(str("saisir la dénomination"))
         self.e_designation.speak.connect(partial(self.call_b,data='e_designation'))
-
-        self.user = QLabel('Enter Name',self)
-        self.user.setFont(QFont('Arial', 19))
+        user_arbi=str("Saisissez le nom")
+        self.user = QLabel(user_arbi,self)
+        self.user.setFont(QFont('Arial', 15))
         self.user.setStyleSheet('background-color:white; color: black')
-        self.user.setGeometry(70,270,300,30)
-
-        self.employer_id = QLabel('Enter Employer ID',self)
-        self.employer_id.setFont(QFont('Arial', 19))
+        self.user.setGeometry(55,350,410,30)
+        employer_arbi=str("Saisir le numéro d'identification de l'employeur")
+        self.employer_id = QLabel(employer_arbi,self)
+        self.employer_id.setFont(QFont('Arial', 15))
         self.employer_id.setStyleSheet('background-color:white; color: black')
-        self.employer_id.setGeometry(70,340,300,30)
+        self.employer_id.setGeometry(55,420,410,30)
 
-        self.contact = QLabel('Enter Contact',self)
-        self.contact.setFont(QFont('Arial', 19))
+        self.contact = QLabel(str("Entrer   contact"),self)
+        self.contact.setFont(QFont('Arial', 15))
         self.contact.setStyleSheet('background-color:white; color: black')
-        self.contact.setGeometry(70,410,300,30)
+        self.contact.setGeometry(55,490,410,30)
 
-        self.designation = QLabel('Enter Designation',self)
-        self.designation.setFont(QFont('Arial', 19))
+        self.designation = QLabel(str("saisir la dénomination"),self)
+        self.designation.setFont(QFont('Arial', 15))
         self.designation.setStyleSheet('background-color:white; color: black')
-        self.designation.setGeometry(70,480,300,30)
+        self.designation.setGeometry(55,560,410,30)
 
 
 
@@ -9222,16 +10862,16 @@ padding: 4px; color: black''')
             self.swindow = userswindow(self.r)
             windoww.win.addSubWindow(self.swindow)
             self.swindow.show()
-            self.popup2=popup2(name='                User has been edited !',name2='Close')
+            self.popup2=popup2(name='                utilisateur a été ajouté !',name2='Fermer')
             self.popup2.show()
 
         except ValueError:
                 print("error")
-                self.popup1=popup1(name='           User is already present !',name2='Close')
+                self.popup1=popup1(name="           l'utilisateur est déjà présent  !",name2='Fermer')
                 self.popup1.show()
         except NameError:
                 print("error")
-                self.popup1=popup1(name='            Please Enter All Values !',name2='Close')
+                self.popup1=popup1(name='        Veuillez saisir toutes les valeurs !',name2='Fermer')
                 self.popup1.show()
 class password_screen():
     password=''
@@ -9264,7 +10904,7 @@ class keydata():
     designation=''
     editdata=''
 class mainwindow1():
-    toptext='Current Temperature'
+    toptext=str("\u062f\u0631\u062c\u0629 \u0627\u0644\u062d\u0631\u0627\u0631\u0629 \u0627\u0644\u062d\u0627\u0644\u064a\u0629")
     lowertext=''
 class windoww():
     win=''

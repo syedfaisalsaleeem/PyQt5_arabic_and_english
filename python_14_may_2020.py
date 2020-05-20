@@ -1306,12 +1306,12 @@ class masterpasswordscreen(QMdiSubWindow):
 
         if(len(self.e_nsp.text())==0 or len(self.e_cp.text())==0 ):
 
-            self.popup1=popup1(name='              Please Enter All Values',name2='Close')
+            self.popup1=popup1(name='Veuillez saisir toutes les valeurs',name2='Close')
             self.popup1.show()
 
         elif(self.e_nsp.text()!=self.e_cp.text()):
 
-            self.popup1=popup1(name="      New password does not matched\n      confirmed password!",name2='Close')
+            self.popup1=popup1(name="Le nouveau mot de passe ne correspond pas  mot de passe confirmé!",name2='Close')
             self.popup1.show()
 
 
@@ -1323,7 +1323,7 @@ class masterpasswordscreen(QMdiSubWindow):
             conn.commit()
             c.close()               
             conn.close()
-            self.popup1=popup2(name="              Password has been updated!",name2='Close')
+            self.popup1=popup2(name="Le mot de passe a été mis à jour!",name2='Close')
             self.popup1.show()
             self.close()
             #self.destroy()
@@ -1495,23 +1495,23 @@ class servicepasswordscreen(QMdiSubWindow):
     def save1(self):
         if(self.e_cp.text()!=self.passwordoriginal):
 
-            self.popup1=popup1(name='Please Enter Correct Previous Password! ',name2='Close')
+            self.popup1=popup1(name='Veuillez saisir le mot de passe précédent correct! ',name2='Close')
             self.popup1.show()
 
 
         elif(len(self.e_cp.text())==0 or len(self.e_np.text())==0 or len(self.e_cnp.text())==0):
 
-            self.popup1=popup1(name='              Please Enter All Values',name2='Close')
+            self.popup1=popup1(name='   Veuillez saisir toutes les valeurs',name2='Close')
             self.popup1.show()
 
         elif(self.e_np.text()!=self.e_cnp.text()):
 
-            self.popup1=popup1(name="      New password does not matched\n      confirmed password!",name2='Close')
+            self.popup1=popup1(name="le nouveau mot de passe ne correspond pas à confirmer le mot de passe!",name2='Close')
             self.popup1.show()
 
 
         elif(self.passwordoriginal==self.e_np.text() or self.passwordoriginal==self.e_cnp.text()):
-            self.popup1=popup1(name="        You cannot set the current password! ",name2='Close')
+            self.popup1=popup1(name="Vous ne pouvez pas définir le mot de passe actuel! ",name2='Close')
             self.popup1.show()
 
             
@@ -1523,7 +1523,7 @@ class servicepasswordscreen(QMdiSubWindow):
             conn.commit()
             c.close()               
             conn.close()
-            self.popup1=popup2(name="              Password has been updated!",name2='Close')
+            self.popup1=popup2(name="Le mot de passe a été mis à jour!",name2='Close')
             self.popup1.show()
             self.close()
             #self.destroy()
@@ -2056,9 +2056,13 @@ class notification1(QMdiSubWindow):
         self.setStyleSheet('background-color:#f7f7ff;')
         self.label = QLabel(self)
         #self.pixmap = QPixmap('header.png')
-        self.label.setPixmap(QPixmap('graph_screen.png'))
+        self.label.setPixmap(QPixmap('graph_screen1.png'))
         self.label.setGeometry(0,100,1024,668)
-        self.b_power = QPushButton('Power Failure', self)
+        self.label = QLabel(str("\u062a\u0646\u0628\u064a\u0647"),self)
+        self.label.setFont(QFont('Arial', 27))
+        self.label.setStyleSheet('background-color:white; color: black')
+        self.label.setGeometry(280,125,300,50)
+        self.b_power = QPushButton('panne de courant', self)
         self.b_power.setFont(QFont('Arial', 25))
         self.b_power.setGeometry(370,200,285,125)
         self.b_power.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -3049,7 +3053,7 @@ class settingswindow(QMdiSubWindow):
         self.service.setGeometry(370,400,285,155)
         self.service.setStyleSheet('background-image: url(setting.png);')
         self.service.clicked.connect(self.servicewindow)
-        self.back = QPushButton('Back', self)
+        self.back = QPushButton('Retour', self)
         self.back.setGeometry(370,590,280,100)
         self.back.setFont(QFont('Arial', 21))
         self.back.setStyleSheet("background-color:#4299ff;border: none;border-style: outset;\n"
@@ -3532,12 +3536,12 @@ class about_screen(QMdiSubWindow):
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_DeleteOnClose)
         self.setStyleSheet("background-color:#f7f7ff;")
-        self.label = QLabel('About Us',self)
+        self.label = QLabel('À propos de nous',self)
         self.label.setFont(QFont('Arial', 19))
         self.label.setStyleSheet('background-color:#f7f7ff; color: black')
         self.label.setGeometry(450,110,220,50)
-        self.back = QPushButton('Back', self)
-        self.back.setGeometry(750,160,240,70)
+        self.back = QPushButton('Retour', self)
+        self.back.setGeometry(700,160,240,70)
         self.back.setFont(QFont('Arial', 21))
         self.back.setStyleSheet('''background-color:#4299ff;border: none;border-style: outset;
 border-width: 0.5px;
@@ -3551,23 +3555,8 @@ padding: 4px; color: black''')
         self.plainText.setFont(QFont('Arial',20))
         self.plainText.setReadOnly(True)
         self.plainText.setGeometry(10,250,1000,500)
-        self.quote = """Anamed Systems was established back in 2006 with an aim in mind to provide the best medical and laboratory instruments to all over the world. Company 
-has successfully achieved its target over the period of 13 years in the industry and now moving forward with a drastic pace to accomplish the vision of it’s 
-founder.
-Anamed Systems was installed with an purpose in thoughts to provide the 
-excellent Medical and laboratory instruments to everywhere in the international.
-Company has successfully performed its target over the length of thirteen 
-years inside the industry and now transferring forward with a drastic tempo to 
-perform the imaginative and prescient of it’s founder.
-Anamed Systems is the specialized supplier of revolutionary heat technology
-merchandise of drying, incubating and hot air sterilization carried out in 
-studies, improvement, production and satisfactory guarantee.
-As a member of Anamed Systems, KSA is specialized inside the income and 
-carrier of these super merchandise. This technologically leading product line is based on a knowledge amassed over a few years and meets the needs and 
-requirements of an ever changing marketplace.
-Competent consulting, an international energetic network of buyers and a 
-properly skilled group of provider technicians are the foundation of happy 
-customers."""
+        self.quote = """Anamed Systems a été créé en 2006 dans le but de fournir les meilleurs instruments médicaux et de laboratoire au monde entier. La société a atteint son objectif avec succès en 13 ans d'existence et avance maintenant à un rythme effréné pour réaliser la vision de son fondateur. Anamed Systems a été installé dans le but de fournir les meilleurs instruments médicaux et de laboratoire partout dans le monde. La société a atteint son objectif avec succès pendant treize ans dans l'industrie et avance maintenant à un rythme effréné pour réaliser l'imagination et la vision de son fondateur. Anamed Systems est le fournisseur spécialisé d'une marchandise révolutionnaire de technologie thermique de séchage, d'incubation et de stérilisation à l'air chaud réalisée en études, amélioration, production et garantie satisfaisante. En tant que membre d'Anamed Systems, KSA est spécialisé dans le revenu et le transport de ces super marchandises. Cette ligne de produits à la pointe de la technologie est basée sur un savoir accumulé en quelques années et répond aux besoins et aux exigences d'un marché en constante évolution. Un conseil compétent, un réseau international dynamique d'acheteurs et un Les techniciens des prestataires de services, dûment qualifiés, sont la base d'une clients.
+"""
         
         self.plainText.appendPlainText(self.quote)
         self.plainText.setVerticalScrollBarPolicy(Qt.ScrollBarAlwaysOn)
@@ -4523,7 +4512,7 @@ class selectuserscreen(QMdiSubWindow):
             windoww.win.addSubWindow(self.userswindow)
             self.userswindow.show()
         except:
-            self.popup1=popup1(name='    Please select any user to continue',name2='Okay!')
+            self.popup1=popup1(name="Veuillez sélectionner n'importe quel valeur",name2='Okay!')
             self.popup1.show()
 
 
@@ -8248,47 +8237,47 @@ class subwindow(QMdiSubWindow):
         #self.s1 = Switch(self)
         #self.setWindowFlags(QtCore.Qt.WindowStaysOnTopHint)
         self.setWindowFlags(Qt.WindowStaysOnTopHint  | Qt.FramelessWindowHint)
-        buttonWindow1 = QPushButton('Start Test', self)
-        buttonWindow1.setFont(QFont('Arial', 27))
+        buttonWindow1 = QPushButton('      Démarrer le test', self)
+        buttonWindow1.setFont(QFont('Arial', 22))
         buttonWindow1.setGeometry(20,160,285,155)
         buttonWindow1.setStyleSheet('background-image: url(start.png);')
         buttonWindow1.clicked.connect(self.buttonWindow1_onClick)
-        Settings = QPushButton('Settings  ', self)
-        Settings.setFont(QFont('Arial', 27))
+        Settings = QPushButton(' Paramètres', self)
+        Settings.setFont(QFont('Arial', 22))
         Settings.setGeometry(20,350,285,155)
         Settings.setStyleSheet('background-image: url(setting.png);')
         Settings.clicked.connect(self.settingswindow)
-        User = QPushButton('User      ', self)
-        User.setFont(QFont('Arial', 27))
+        User = QPushButton('Utilisateur', self)
+        User.setFont(QFont('Arial', 22))
         User.setGeometry(20,540,285,155)
         User.setStyleSheet('background-image: url(user.png);')
         User.clicked.connect(self.userswindow)
         
         
-        Results = QPushButton('Results', self)
-        Results.setFont(QFont('Arial', 27))
+        Results = QPushButton('Résultats', self)
+        Results.setFont(QFont('Arial', 22))
         Results.setGeometry(330,160,285,155)
         Results.setStyleSheet('background-image: url(Result.png);')
         Results.clicked.connect(self.resultswindow)
         
         #windoww.win.addSubWindow(self.rw)
-        About = QPushButton('About  ', self)
-        About.setFont(QFont('Arial', 27))
+        About = QPushButton('    À propos de', self)
+        About.setFont(QFont('Arial', 22))
         About.setGeometry(330,350,285,155)
         About.setStyleSheet('background-image: url(about.png);')
         About.clicked.connect(self.aboutwindow)
-        Damper = QPushButton('Damper ', self)
-        Damper.setFont(QFont('Arial', 27))
+        Damper = QPushButton('    Amortisseur', self)
+        Damper.setFont(QFont('Arial', 22))
         Damper.setGeometry(330,540,285,155)
         Damper.setStyleSheet('background-image: url(damper.png);')
         Damper.clicked.connect(self.damperwindow)
         self.n = QPushButton(self)
-        self.n.setFont(QFont('Arial', 27))
+        self.n.setFont(QFont('Arial', 22))
         self.n.setGeometry(800,630,50,50)
         self.n.setStyleSheet('background-image: url(notification1.png);border: none;border-style: outset;')
         self.s = QPushButton(self)
         self.s.setCheckable(True)
-        self.s.setFont(QFont('Arial', 27))
+        self.s.setFont(QFont('Arial', 22))
         self.s.setChecked(self.sounds)        
         self.s.setStyleSheet(("QPushButton{background-image: url(sound_on.png); color: white;border: none;} QPushButton:checked { background-image: url(sound_off.png);color:black; }"))
         self.s.clicked.connect(lambda sounds:self.control(sounds))
